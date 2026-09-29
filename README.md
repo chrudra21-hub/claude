@@ -24,6 +24,20 @@ Booking points at `https://www.prasiddhiholistics.com/service-form` with
 object of the service-form embed. The legacy globals `phSetTheme(dark)` and `phNavGo(url)`
 still exist for embeds that call them directly.
 
+## Photo slots
+
+The stat cards and the benefit cards each have a curved media panel built for
+a photograph. None are set, so every panel falls back to its own gradient and
+ring texture — nothing renders empty.
+
+- **Stat cards** (`index.html`, the `.stat-item` blocks): add
+  `style="--img:url('https://your-image.jpg')"` to the card.
+- **Benefit cards**: fill the `img` field in the `benefits` array near the
+  bottom of the file — `{img:'https://your-image.jpg', ic:ic.flame, …}`.
+
+Landscape crops work best; the panel covers roughly the right 45% of a
+benefit card and the whole of a stat card, both centred.
+
 ## Before publishing
 
 - **Pricing** — `₹6,500` appears in the booking card and the mobile sticky bar. Update both.
