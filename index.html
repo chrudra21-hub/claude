@@ -1,0 +1,1383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#FBF3DE" id="themeColorMeta">
+<meta name="description" content="Lama Fera Healing at Prasiddhe Holistic — a channelled energy practice to clear heaviness, ease stress and restore balance. In person or remote.">
+<title>Lama Fera Healing — Prasiddhe Holistic</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300..900&family=Jost:wght@300..700&family=Cinzel:wght@600;700&family=Cinzel+Decorative:wght@700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════════════
+   1 · TOKENS
+   ══════════════════════════════════════════════════════════════ */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+  --b0:#FFFDF7;--b1:#FBF3DE;--b2:#F3E7C7;--b3:#E8D6A8;
+  --card-a:#FFFFFE;--card-b:#FFF8EC;
+  --gold:#8A5F14;--goldl:#B5811F;--goldp:#F2E0AE;
+  --ink:#1C1204;--inkm:#3A2814;--inks:#5C4A32;
+  --border:rgba(166,124,30,.32);--borderStrong:rgba(166,124,30,.55);
+  --glow:rgba(166,124,30,.26);--glowStrong:rgba(212,165,55,.42);
+  --accent:#B4813E;--accent-glow:rgba(180,129,62,.4);
+  --heal:#4E8C7A;--heal-glow:rgba(78,140,122,.32);
+  --spot:rgba(255,255,255,.75);
+  --sh-sm:0 8px 20px -16px rgba(36,23,8,.4);
+  --sh-md:0 4px 4px -2px rgba(36,23,8,.06),0 26px 54px -22px rgba(36,23,8,.34);
+  --r:22px;--r-card:18px;--mt:.9s cubic-bezier(.4,0,.2,1);
+  --max:1640px;
+}
+body.magic{
+  --b0:#050C0C;--b1:#0D1B1A;--b2:#132826;--b3:#1C3A37;
+  --card-a:#0D1B1A;--card-b:#071615;
+  --gold:#8FE8CE;--goldl:#5FD9BB;--goldp:#123330;
+  --ink:#EAFBF6;--inkm:#BFE9DC;--inks:#7FB8A9;
+  --border:rgba(143,232,206,.36);--borderStrong:rgba(143,232,206,.62);
+  --glow:rgba(90,220,190,.4);--glowStrong:rgba(140,255,220,.55);
+  --accent:#5FD9BB;--accent-glow:rgba(95,217,187,.45);
+  --heal:#5FD9BB;--heal-glow:rgba(95,217,187,.4);
+  --spot:rgba(143,232,206,.28);
+  --sh-sm:0 10px 22px -16px rgba(0,0,0,.6);
+  --sh-md:0 4px 4px -2px rgba(0,0,0,.3),0 20px 44px -16px rgba(0,0,0,.6);
+}
+
+html{scroll-behavior:smooth}
+html,body{max-width:100%;overflow-x:clip}
+body{
+  min-height:100vh;background-color:var(--b0);
+  background-image:linear-gradient(158deg,#FFFFFF 0%,#FFFDF3 34%,#FFF6E2 64%,#FCEBC7 100%);
+  font-family:'Jost',system-ui,sans-serif;color:var(--ink);
+  -webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;
+  transition:background-color var(--mt),color var(--mt);
+}
+body.magic{background-image:linear-gradient(158deg,#030808 0%,#071615 40%,#0B211F 70%,#0F2C28 100%)}
+
+::selection{background:var(--heal);color:#fff}
+:focus-visible{outline:2.5px solid var(--heal);outline-offset:3px;border-radius:6px}
+
+.skip{position:absolute;left:50%;top:-100px;transform:translateX(-50%);z-index:900;
+  padding:12px 22px;border-radius:0 0 14px 14px;background:var(--heal);color:#fff;
+  font-weight:600;letter-spacing:.06em;text-decoration:none;transition:top .25s}
+.skip:focus-visible{top:0}
+.sr{position:absolute;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
+
+/* ══════════════════════════════════════════════════════════════
+   2 · BACKGROUND ATMOSPHERE
+   ══════════════════════════════════════════════════════════════ */
+.bg-leaks{position:fixed;inset:-12%;z-index:0;pointer-events:none;will-change:transform;background-repeat:no-repeat;
+  background-image:
+    radial-gradient(ellipse 46% 40% at 8% 4%,rgba(255,231,180,.3),transparent 62%),
+    radial-gradient(ellipse 44% 40% at 96% 8%,rgba(255,250,230,.34),transparent 60%),
+    radial-gradient(ellipse 52% 46% at 92% 98%,rgba(255,238,195,.28),transparent 64%),
+    radial-gradient(ellipse 46% 42% at 4% 96%,rgba(255,224,150,.22),transparent 60%),
+    radial-gradient(ellipse 60% 30% at 50% 50%,rgba(255,255,250,.22),transparent 70%);
+  animation:leakFloat 30s ease-in-out infinite alternate;transition:opacity var(--mt)}
+@keyframes leakFloat{0%{transform:translate3d(0,0,0) scale(1)}50%{transform:translate3d(-1.6%,1.4%,0) scale(1.06)}100%{transform:translate3d(1.4%,-1.2%,0) scale(1.05)}}
+body.magic .bg-leaks{background-image:
+    radial-gradient(ellipse 48% 42% at 8% 2%,rgba(90,220,190,.4),transparent 64%),
+    radial-gradient(ellipse 44% 40% at 98% 6%,rgba(60,200,255,.24),transparent 60%),
+    radial-gradient(ellipse 54% 48% at 92% 100%,rgba(20,150,130,.5),transparent 66%),
+    radial-gradient(ellipse 46% 42% at 2% 96%,rgba(140,255,220,.26),transparent 60%),
+    radial-gradient(ellipse 60% 32% at 50% 52%,rgba(30,170,150,.3),transparent 72%)}
+
+.bg-sides{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background:
+    linear-gradient(90deg,rgba(255,201,130,.36) 0%,rgba(255,222,170,.14) 12%,transparent 26%),
+    linear-gradient(270deg,rgba(255,214,160,.32) 0%,rgba(255,228,190,.12) 12%,transparent 26%);
+  animation:sidesBreathe 9s ease-in-out infinite;transition:opacity var(--mt)}
+body.magic .bg-sides{background:
+    linear-gradient(90deg,rgba(90,220,190,.24) 0%,rgba(90,220,190,.09) 12%,transparent 26%),
+    linear-gradient(270deg,rgba(60,200,255,.2) 0%,rgba(60,200,255,.08) 12%,transparent 26%)}
+@keyframes sidesBreathe{0%,100%{opacity:.7}50%{opacity:1}}
+
+#magicCanvas{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0;transition:opacity 1.4s ease}
+body.magic #magicCanvas{opacity:1}
+
+.orb{position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(90px);will-change:transform;mix-blend-mode:screen;transition:background var(--mt),opacity var(--mt),filter var(--mt)}
+.orb-1{width:560px;height:560px;background:radial-gradient(circle,#FFD37060,transparent 70%);top:-120px;left:-180px;opacity:.18;animation:of1 15s ease-in-out infinite}
+.orb-2{width:440px;height:440px;background:radial-gradient(circle,#FFF2D460,transparent 70%);bottom:4%;right:-130px;opacity:.16;animation:of2 18s ease-in-out infinite}
+.orb-3{width:320px;height:320px;background:radial-gradient(circle,#FFFDF550,transparent 70%);top:45%;left:28%;opacity:.12;animation:of3 22s ease-in-out infinite}
+.orb-4{width:280px;height:280px;background:radial-gradient(circle,#FFE9A855,transparent 70%);top:16%;right:12%;opacity:.1;animation:of2 20s ease-in-out infinite reverse}
+.orb-5{width:360px;height:360px;background:radial-gradient(circle,#FFFFFF55,transparent 70%);top:60%;right:30%;opacity:.08;animation:of3 26s ease-in-out infinite reverse}
+body.magic .orb-1{background:radial-gradient(circle,#2FE7C480,transparent 70%);opacity:.5;filter:blur(110px)}
+body.magic .orb-2{background:radial-gradient(circle,#33C1FF6a,transparent 70%);opacity:.46;filter:blur(100px)}
+body.magic .orb-3{background:radial-gradient(circle,#0FA98F60,transparent 70%);opacity:.4;filter:blur(90px)}
+body.magic .orb-4{background:radial-gradient(circle,#8FE8CE60,transparent 70%);opacity:.34;filter:blur(85px)}
+body.magic .orb-5{background:radial-gradient(circle,#D9FFF455,transparent 70%);opacity:.26;filter:blur(95px)}
+@keyframes of1{0%,100%{transform:translate3d(0,0,0)}35%{transform:translate3d(75px,95px,0)}70%{transform:translate3d(-35px,40px,0)}}
+@keyframes of2{0%,100%{transform:translate3d(0,0,0)}40%{transform:translate3d(-65px,-75px,0)}75%{transform:translate3d(45px,-25px,0)}}
+@keyframes of3{0%,100%{transform:translate3d(0,0,0)}50%{transform:translate3d(-85px,65px,0)}}
+
+/* fixed decor: guide lines, rings, stars, flame watermark */
+.bg-decor{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+.bd-line{position:absolute;top:-10%;height:120%;width:1px;overflow:visible;will-change:transform;
+  background:linear-gradient(180deg,transparent,rgba(166,124,30,.16) 22%,rgba(166,124,30,.16) 78%,transparent);
+  animation:bdSway 9s ease-in-out infinite}
+.bd-line.l1{left:8%}
+.bd-line.l2{left:15%;animation-duration:11s;animation-delay:-3s}
+.bd-line.l3{right:8%;animation-duration:10s;animation-delay:-5s;animation-direction:reverse}
+.bd-line.l4{right:15%;animation-duration:12s;animation-delay:-2s;animation-direction:reverse}
+@keyframes bdSway{0%,100%{transform:translateX(0)}50%{transform:translateX(9px)}}
+body.magic .bd-line{background:linear-gradient(180deg,transparent,rgba(95,217,187,.16) 22%,rgba(95,217,187,.16) 78%,transparent)}
+.bd-line::after,.bd-line::before{content:'';position:absolute;left:0;width:100%;height:28%;will-change:transform}
+.bd-line::after{top:-30%;background:linear-gradient(180deg,transparent,rgba(212,165,55,.95) 50%,transparent);animation:bdFlow 6s linear infinite}
+.bd-line::before{top:130%;background:linear-gradient(180deg,transparent,rgba(255,255,255,.6) 50%,transparent);animation:bdFlowRev 8.5s linear infinite;opacity:.75}
+.bd-line.l2::after{animation-duration:7.5s;animation-delay:-2s}
+.bd-line.l3::after{animation-duration:6.8s;animation-delay:-4s}
+.bd-line.l4::after{animation-duration:8.2s;animation-delay:-1s}
+.bd-line.l2::before{animation-duration:9.5s;animation-delay:-3.5s}
+.bd-line.l3::before{animation-duration:8s;animation-delay:-1.5s}
+.bd-line.l4::before{animation-duration:10.5s;animation-delay:-4.5s}
+body.magic .bd-line::after{background:linear-gradient(180deg,transparent,rgba(143,232,206,.95) 50%,transparent);box-shadow:0 0 10px rgba(95,217,187,.7)}
+body.magic .bd-line::before{background:linear-gradient(180deg,transparent,rgba(220,255,245,.7) 50%,transparent)}
+@keyframes bdFlow{from{transform:translateY(0)}to{transform:translateY(357%)}}
+@keyframes bdFlowRev{from{transform:translateY(0)}to{transform:translateY(-457%)}}
+.bd-ring{position:absolute;border-radius:50%;border:1.5px solid rgba(166,124,30,.16);animation:bdSpin 65s linear infinite;will-change:transform}
+.bd-ring::after{content:'';position:absolute;inset:9%;border-radius:50%;border:1px dashed rgba(166,124,30,.14)}
+.bd-ring.r1{width:520px;height:520px;top:-190px;left:-150px}
+.bd-ring.r2{width:640px;height:640px;bottom:-260px;right:-220px;animation-direction:reverse;animation-duration:85s}
+body.magic .bd-ring{border-color:rgba(95,217,187,.18)}
+body.magic .bd-ring::after{border-color:rgba(95,217,187,.15)}
+@keyframes bdSpin{to{transform:rotate(360deg)}}
+.bd-star{position:absolute;color:rgba(166,124,30,.3);font-size:13px;line-height:1;animation:bdTwk 5s ease-in-out infinite}
+body.magic .bd-star{color:rgba(143,232,206,.42);text-shadow:0 0 8px rgba(95,217,187,.5)}
+@keyframes bdTwk{0%,100%{opacity:.25;transform:scale(.9)}50%{opacity:.9;transform:scale(1.15)}}
+.bd-flame{position:absolute;top:50%;width:300px;height:560px;opacity:.2;color:var(--goldl);animation:bdFlameDrift 12s ease-in-out infinite;will-change:transform}
+.bd-flame.left{left:-64px;transform:translateY(-50%) rotate(-6deg)}
+.bd-flame.right{right:-64px;transform:translateY(-50%) rotate(186deg);animation-delay:-6s}
+.bd-flame svg{width:100%;height:100%;display:block}
+body.magic .bd-flame{opacity:.26;color:var(--heal)}
+@keyframes bdFlameDrift{0%,100%{margin-top:0}50%{margin-top:-14px}}
+@media(max-width:1300px){.bd-flame{display:none}}
+@media(max-width:860px){.bd-line.l2,.bd-line.l4{display:none}.bd-ring{opacity:.6}}
+
+/* ══════════════════════════════════════════════════════════════
+   3 · MOTION BUDGET — lite mode + reduced motion
+   ══════════════════════════════════════════════════════════════ */
+body.lite .bg-leaks,body.lite .bg-sides{animation:none}
+body.lite .orb{animation:none!important;filter:blur(40px)}
+body.lite .orb-4,body.lite .orb-5{display:none}
+body.lite #magicCanvas{display:none!important}
+body.lite .mandala .rot,body.lite .mandala .rot-rev,body.lite .mandala .rot-slow,body.lite .mandala::before,body.lite .mandala .core{animation:none!important}
+body.lite .spark-field i{animation:none!important;opacity:0!important}
+body.lite .nav-sweep::before{animation:none!important}
+body.lite .bd-ring,body.lite .bd-star,body.lite .bd-line,body.lite .bd-line::after,body.lite .bd-line::before,body.lite .bd-flame{animation:none!important}
+body.lite .book-ring{animation:none!important}
+body.lite .cursor-halo{display:none}
+
+/* reduced motion must never leave revealed content invisible */
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition-duration:.001s!important}
+  .reveal,.fade{opacity:1!important;transform:none!important}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   4 · SCROLL PROGRESS + HEADER
+   ══════════════════════════════════════════════════════════════ */
+.scroll-progress{position:fixed;top:0;left:0;height:3px;width:100%;z-index:700;pointer-events:none;
+  background:linear-gradient(90deg,var(--heal),var(--goldl),var(--heal));
+  transform:scaleX(var(--p,0));transform-origin:0 50%;box-shadow:0 0 12px var(--heal-glow)}
+
+nav#phNav{position:sticky;top:0;z-index:500;display:flex;align-items:center;gap:26px;height:88px;padding:0 52px;max-width:100%;
+  background:linear-gradient(115deg,#fffdf5 0%,#fdf2d9 38%,#fbe6b8 72%,#f5d896 100%);
+  border-bottom:1px solid rgba(184,124,42,.26);box-shadow:0 6px 22px rgba(180,120,30,.12);
+  transition:height .3s ease,box-shadow .3s ease,background var(--mt)}
+nav#phNav.shrunk{height:70px;box-shadow:0 10px 30px rgba(180,120,30,.2)}
+body.magic nav#phNav{background:linear-gradient(115deg,#071615 0%,#0B211F 45%,#0F2C28 75%,#123330 100%);border-bottom-color:rgba(143,232,206,.25);box-shadow:0 6px 26px rgba(0,0,0,.42)}
+.nav-sweep{position:absolute;inset:0;overflow:hidden;pointer-events:none}
+.nav-sweep::before{content:'';position:absolute;top:0;left:-60%;width:40%;height:100%;
+  background:linear-gradient(100deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-20deg);animation:navSweep 6s ease-in-out infinite}
+@keyframes navSweep{0%,55%{left:-60%}85%,100%{left:130%}}
+body.magic .nav-sweep::before{background:linear-gradient(100deg,transparent,rgba(143,232,206,.28),transparent)}
+
+nav#phNav .nav-logo{position:relative;z-index:2;font-size:20px;display:flex;align-items:center;gap:12px;
+  font-family:'Cinzel Decorative',serif;font-weight:700;white-space:nowrap;letter-spacing:.5px;flex:none;text-decoration:none;
+  background:linear-gradient(135deg,#92400e,#c97706,#f59e0b);-webkit-background-clip:text;background-clip:text;color:transparent}
+body.magic nav#phNav .nav-logo{background:linear-gradient(135deg,#eafbf6,#8fe8ce,#5fd9bb);-webkit-background-clip:text;background-clip:text}
+.nav-logo-img{width:52px;height:52px;object-fit:cover;border-radius:50%;flex:0 0 52px;display:block;
+  -webkit-mask-image:radial-gradient(circle,#000 56%,transparent 73%);mask-image:radial-gradient(circle,#000 56%,transparent 73%);
+  filter:drop-shadow(0 0 7px rgba(224,160,58,.6)) saturate(1.1);transition:width .3s,height .3s,flex-basis .3s}
+.nav-logo-img.keyed{-webkit-mask-image:none;mask-image:none;border-radius:0;object-fit:contain;filter:drop-shadow(0 1px 6px rgba(140,86,35,.42))}
+nav#phNav.shrunk .nav-logo-img{width:42px;height:42px;flex:0 0 42px}
+
+.ph-nav-links{position:relative;z-index:2;display:flex;align-items:center;gap:4px;margin-left:auto;max-width:100%;
+  overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none}
+.ph-nav-links::-webkit-scrollbar{display:none}
+.ph-link{position:relative;padding:12px 20px;font-family:'Cinzel',serif;font-weight:700;font-size:14.5px;letter-spacing:1.8px;
+  text-transform:uppercase;color:#5c3d11;text-decoration:none;cursor:pointer;border-radius:11px;white-space:nowrap;transition:color .25s,background .25s}
+.ph-link::after{content:'';position:absolute;left:20px;right:20px;bottom:8px;height:2px;border-radius:2px;
+  background:linear-gradient(90deg,transparent,var(--gold),transparent);transform:scaleX(0);transition:transform .32s cubic-bezier(.34,1.2,.64,1)}
+.ph-link:hover{color:#8a5a12}
+.ph-link:hover::after{transform:scaleX(1)}
+.ph-link[aria-current="page"]{color:#8a5a12}
+.ph-link[aria-current="page"]::after{transform:scaleX(1);box-shadow:0 0 8px var(--glow)}
+body.magic .ph-link{color:#dff7ee}
+body.magic .ph-link:hover,body.magic .ph-link[aria-current="page"]{color:#fff;background:rgba(143,232,206,.1)}
+body.magic .ph-link::after{background:linear-gradient(90deg,transparent,#8fe8ce,transparent);box-shadow:0 0 8px #5fd9bb}
+
+nav#phNav .ph-mode-wrap{position:relative;z-index:2;display:flex;gap:8px;margin-left:8px;flex:none}
+.ph-mbtn{padding:10px 15px;font-size:16px;border-radius:999px;cursor:pointer;font-weight:700;border:2px solid;white-space:nowrap;
+  transition:all .25s;background:transparent;line-height:1}
+.ph-mbtn-light{border-color:rgba(201,119,6,.4);background:rgba(201,119,6,.08);color:#c97706}
+.ph-mbtn-light:hover{background:rgba(201,119,6,.16)}
+.ph-mbtn-dark{border-color:rgba(95,217,187,.35);background:rgba(95,217,187,.08);color:#2e9c82}
+.ph-mbtn-dark:hover{background:rgba(95,217,187,.16)}
+.ph-mbtn[aria-pressed="true"]{box-shadow:0 0 0 3px var(--glow);transform:scale(1.04)}
+body.magic .ph-mbtn-dark{color:#8fe8ce}
+@media(max-width:940px){
+  nav#phNav,nav#phNav.shrunk{gap:14px;padding:0 20px;height:72px}
+  .ph-link{padding:9px 12px;font-size:12px;letter-spacing:1px}
+  .nav-logo-img,nav#phNav.shrunk .nav-logo-img{width:40px;height:40px;flex:0 0 40px}
+  nav#phNav .nav-logo{font-size:14px}
+  nav#phNav .nav-logo span{display:none}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   5 · SHELL + REVEAL SYSTEM
+   ══════════════════════════════════════════════════════════════ */
+.heal-section{padding:40px 40px 120px;position:relative;z-index:1;max-width:var(--max);margin:0 auto}
+@media(max-width:600px){.heal-section{padding:24px 16px 120px}}
+
+.reveal{opacity:0;transform:translateY(18px);
+  transition:opacity .6s ease var(--d,0s),transform .6s cubic-bezier(.22,.68,0,1.18) var(--d,0s)}
+.reveal.visible{opacity:1;transform:none}
+.fade{opacity:0;animation:fadeUp .55s var(--d,0s) forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+
+
+/* mode toggle */
+.magic-toggle-wrap{display:flex;justify-content:center;margin-bottom:18px;position:relative;z-index:10}
+.magic-toggle{display:inline-flex;align-items:center;gap:10px;padding:12px 28px;border-radius:30px;
+  border:1.5px solid var(--border);background:var(--b1);font-family:inherit;font-size:14px;font-weight:600;letter-spacing:.08em;
+  color:var(--inkm);cursor:pointer;position:relative;overflow:hidden;transition:border-color .35s,color .35s,box-shadow .4s,background var(--mt)}
+.magic-toggle:hover{border-color:var(--gold);color:var(--ink);box-shadow:0 0 18px var(--glow)}
+.magic-toggle .bg-glow{position:absolute;inset:0;background:linear-gradient(135deg,#2FE7C422,#33C1FF22,#0FA98F22);opacity:0;transition:opacity .5s;pointer-events:none}
+body.magic .magic-toggle .bg-glow{opacity:1}
+body.magic .magic-toggle{border-color:var(--borderStrong);color:var(--gold);box-shadow:0 0 20px var(--glow),inset 0 0 20px rgba(90,220,190,.08);animation:toggleGlowPulse 3.4s ease-in-out infinite}
+body.magic.lite .magic-toggle{animation:none}
+body.magic .magic-toggle:hover{box-shadow:0 0 28px var(--glowStrong);color:#fff;animation:none}
+@keyframes toggleGlowPulse{0%,100%{box-shadow:0 0 18px var(--glow),inset 0 0 18px rgba(90,220,190,.08)}50%{box-shadow:0 0 32px var(--glowStrong),inset 0 0 26px rgba(90,220,190,.16)}}
+.t-star{font-size:16px;display:inline-block;transition:filter .4s}
+body.magic .t-star{animation:starSpin 2.5s linear infinite}
+body.magic.lite .t-star{animation:none}
+@keyframes starSpin{0%{transform:rotate(0) scale(1);filter:drop-shadow(0 0 5px #8FE8CE)}50%{transform:rotate(180deg) scale(1.4);filter:drop-shadow(0 0 12px #5FD9BB)}100%{transform:rotate(360deg) scale(1);filter:drop-shadow(0 0 5px #8FE8CE)}}
+.lbl-n{display:inline}.lbl-m{display:none}
+body.magic .lbl-n{display:none}body.magic .lbl-m{display:inline}
+
+/* shared card surface */
+.surface{background:linear-gradient(165deg,var(--card-a) 0%,var(--card-b) 100%);
+  border:1px solid var(--border);border-radius:var(--r-card);box-shadow:var(--sh-sm);transition:background var(--mt),border-color .35s,box-shadow .4s,transform .45s cubic-bezier(.22,.68,0,1.18)}
+
+/* pointer spotlight for cards */
+.spot{position:relative;isolation:isolate}
+.spot::before{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;z-index:-1;opacity:0;transition:opacity .35s;
+  background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),var(--spot),transparent 70%)}
+.spot:hover::before{opacity:1}
+
+/* ══════════════════════════════════════════════════════════════
+   6 · HERO
+   ══════════════════════════════════════════════════════════════ */
+.heal-header{display:flex;align-items:stretch;margin-bottom:10px;border-radius:28px;overflow:hidden;
+  background:linear-gradient(165deg,var(--card-a) 0%,var(--card-b) 100%);border:1.5px solid var(--border);
+  box-shadow:var(--sh-md);transition:background var(--mt)}
+.hero-visual{flex:0 0 440px;display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;padding:54px 34px;
+  background:radial-gradient(120% 100% at 50% 0%,color-mix(in srgb,var(--heal) 16%,transparent) 0%,transparent 66%);
+  border-right:1.5px solid var(--border);transition:border-color var(--mt)}
+body.magic .hero-visual{background:radial-gradient(120% 100% at 50% 0%,color-mix(in srgb,var(--heal) 26%,transparent) 0%,transparent 66%);border-right-color:var(--borderStrong)}
+.hero-copy{flex:1 1 auto;min-width:0;padding:54px 60px;display:flex;flex-direction:column;justify-content:center}
+
+.eyebrow-wrap{display:flex;align-items:center;gap:9px}
+.deco-diamond{width:7px;height:7px;border:1.5px solid var(--gold);transform:rotate(45deg);display:inline-block;flex:none;transition:border-color var(--mt),box-shadow .4s}
+body.magic .deco-diamond{box-shadow:0 0 8px var(--gold)}
+.eyebrow{font-size:13.5px;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);transition:color var(--mt),text-shadow var(--mt)}
+body.magic .eyebrow{text-shadow:0 0 14px #8FE8CEaa,0 0 35px #5FD9BB66}
+
+.mandala-wrap{display:flex;justify-content:center}
+.mandala{width:320px;height:320px;position:relative}
+.mandala::before{content:'';position:absolute;inset:-22%;border-radius:50%;background:radial-gradient(circle,var(--heal-glow) 0%,transparent 68%);opacity:.7;filter:blur(14px);animation:breathe 4.5s ease-in-out infinite}
+.mandala svg{position:relative;width:100%;height:100%;display:block;color:var(--heal);filter:drop-shadow(0 0 14px var(--heal-glow))}
+.mandala-photo{position:absolute;inset:14%;border-radius:50%;overflow:hidden;z-index:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.25)}
+.mandala-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) brightness(.94)}
+.mandala-photo::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 25%,color-mix(in srgb,var(--heal) 38%,transparent) 100%)}
+.mandala .rot{transform-origin:75px 75px;animation:ringSpin 40s linear infinite}
+.mandala .rot-rev{transform-origin:75px 75px;animation:ringSpin 55s linear infinite reverse}
+.mandala .rot-slow{transform-origin:75px 75px;animation:ringSpin 90s linear infinite}
+.mandala .core{animation:coreBreathe 3.6s ease-in-out infinite}
+@keyframes ringSpin{to{transform:rotate(360deg)}}
+@keyframes breathe{0%,100%{transform:scale(1);opacity:.55}50%{transform:scale(1.16);opacity:.85}}
+@keyframes coreBreathe{0%,100%{transform:scale(1);opacity:.9}50%{transform:scale(1.09);opacity:1}}
+body.magic .mandala svg{filter:drop-shadow(0 0 22px var(--glowStrong))}
+.spark-field{position:absolute;inset:0;pointer-events:none}
+.spark-field i{position:absolute;width:4px;height:4px;border-radius:50%;background:#fff;box-shadow:0 0 8px 1px var(--heal);opacity:0}
+body.magic .spark-field i{animation:sparkTwinkle var(--sd,4s) ease-in-out var(--sdl,0s) infinite}
+@keyframes sparkTwinkle{0%,100%{opacity:0;transform:scale(.3)}50%{opacity:.9;transform:scale(1)}}
+
+.heal-title{font-family:'Fraunces',serif;font-size:clamp(34px,3.4vw,56px);font-weight:560;line-height:1.08;color:var(--ink);
+  margin:16px 0 14px;transition:color var(--mt),text-shadow var(--mt)}
+.heal-title em{font-style:normal;font-weight:640;color:var(--gold);transition:color var(--mt)}
+body.magic .heal-title{text-shadow:0 0 40px #5FD9BB22}
+body.magic .heal-title em{animation:titleShimmer 4s ease-in-out infinite}
+body.magic.lite .heal-title em{animation:none}
+@keyframes titleShimmer{0%,100%{text-shadow:0 0 20px #8FE8CE88,0 0 50px #5FD9BB44}50%{text-shadow:0 0 40px #8FE8CEee,0 0 80px #5FD9BBaa,0 0 120px #2FE7C466}}
+.heal-lede{font-size:19px;color:var(--inks);line-height:1.7;max-width:70ch}
+
+.hero-cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.assure-row{display:flex;flex-wrap:wrap;align-items:center;gap:12px;margin-top:22px}
+.assure{display:inline-flex;align-items:center;gap:8px;white-space:nowrap;font-size:15px;font-weight:500;color:var(--inkm);
+  border:1px solid var(--border);border-radius:30px;padding:11px 22px;background:color-mix(in srgb,var(--gold) 5%,var(--b0));
+  transition:background var(--mt),border-color .3s,color var(--mt),transform .3s}
+.assure:hover{transform:translateY(-2px);border-color:var(--heal)}
+.assure svg{width:17px;height:17px;color:var(--gold);flex:none}
+body.magic .assure{background:color-mix(in srgb,var(--accent) 8%,transparent)}
+
+@media(max-width:1000px){
+  .heal-header{flex-direction:column;text-align:center;border-radius:22px}
+  .hero-visual{flex:none;width:100%;padding:34px 20px;border-right:none;border-bottom:1.5px solid var(--border)}
+  .hero-copy{text-align:center;padding:32px 24px;align-items:center}
+  .heal-lede{max-width:none}
+  .assure-row,.hero-cta{justify-content:center}
+  .mandala{width:220px;height:220px}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   7 · BUTTONS
+   ══════════════════════════════════════════════════════════════ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;padding:16px 30px;border-radius:30px;border:none;cursor:pointer;
+  font-family:inherit;font-size:14.5px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;
+  position:relative;overflow:hidden;white-space:nowrap;transition:transform .25s,box-shadow .35s,background .3s,color .3s,border-color .3s}
+.btn svg{width:13px;height:13px;transition:transform .28s}
+.btn:hover{transform:translateY(-2px)}
+.btn:active{transform:translateY(0) scale(.985)}
+.btn-cast{background:linear-gradient(135deg,var(--heal),color-mix(in srgb,var(--heal) 70%,black));color:#fff;
+  box-shadow:0 10px 24px -8px var(--heal-glow),0 0 0 1px rgba(255,255,255,.12) inset}
+.btn-cast::after{content:'';position:absolute;top:0;left:-60%;width:45%;height:100%;
+  background:linear-gradient(115deg,transparent,rgba(255,255,255,.5),transparent);transform:skewX(-18deg);transition:left .65s ease}
+.btn-cast:hover::after{left:130%}
+.btn-cast:hover{box-shadow:0 16px 30px -6px var(--heal-glow)}
+.btn-cast:hover svg{transform:translateX(3px)}
+.btn-ghost{background:transparent;color:var(--gold);border:1.5px solid var(--border)}
+.btn-ghost:hover{border-color:var(--gold);background:color-mix(in srgb,var(--gold) 8%,transparent);box-shadow:0 0 18px var(--glow)}
+
+/* ══════════════════════════════════════════════════════════════
+   8 · STAT STRIP
+   ══════════════════════════════════════════════════════════════ */
+.stat-strip{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;margin:30px 0 8px;border-radius:20px;overflow:hidden;
+  border:1.5px solid var(--border);background:var(--border)}
+.stat-item{background:var(--b1);padding:28px 20px;text-align:center;transition:background var(--mt)}
+body.magic .stat-item{background:#0D1B1A}
+.stat-num{font-family:'Fraunces',serif;font-size:clamp(26px,2.4vw,34px);font-weight:680;color:var(--gold);margin-bottom:5px;letter-spacing:-.01em;
+  font-variant-numeric:tabular-nums;transition:color var(--mt)}
+.stat-lbl{font-size:13.5px;color:var(--inks);letter-spacing:.02em;line-height:1.4}
+@media(max-width:760px){.stat-strip{grid-template-columns:repeat(2,1fr)}}
+
+/* ══════════════════════════════════════════════════════════════
+   9 · SECTION LABEL
+   ══════════════════════════════════════════════════════════════ */
+.sec-label{display:flex;align-items:center;gap:12px;margin:56px 0 24px}
+.sec-label .ln{flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--border) 40%,var(--border) 60%,transparent)}
+.sec-label h2,.sec-label span.t{font-family:'Cinzel',serif;font-size:clamp(14px,1.4vw,16px);font-weight:700;letter-spacing:.22em;
+  text-transform:uppercase;color:var(--gold);white-space:nowrap;transition:color var(--mt)}
+
+/* ══════════════════════════════════════════════════════════════
+   10 · BENEFITS
+   ══════════════════════════════════════════════════════════════ */
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.benefit{display:flex;flex-direction:column;gap:13px;padding:28px 26px 30px}
+.benefit:hover{transform:translateY(-5px);border-color:var(--heal);box-shadow:0 18px 36px -18px var(--heal-glow)}
+.benefit .b-ic{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;
+  background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--heal) 30%,#fff),color-mix(in srgb,var(--heal) 10%,#fff7e6));
+  border:1.5px solid color-mix(in srgb,var(--heal) 55%,var(--borderStrong));color:var(--heal);box-shadow:0 6px 14px -8px var(--heal-glow);
+  transition:transform .4s cubic-bezier(.34,1.3,.64,1)}
+.benefit:hover .b-ic{transform:scale(1.08) rotate(-6deg)}
+body.magic .benefit .b-ic{background:radial-gradient(circle at 40% 35%,rgba(95,217,187,.2),rgba(95,217,187,.05))}
+.benefit .b-ic svg{width:23px;height:23px}
+.benefit h3{font-family:'Fraunces',serif;font-size:17.5px;font-weight:640;color:var(--ink);line-height:1.32;transition:color var(--mt)}
+.benefit p{font-size:14.5px;line-height:1.65;color:var(--inks)}
+@media(max-width:1100px){.benefits-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:640px){.benefits-grid{grid-template-columns:1fr}}
+
+/* ══════════════════════════════════════════════════════════════
+   11 · SESSION FLOW
+   ══════════════════════════════════════════════════════════════ */
+.flow-steps{display:flex;align-items:flex-start;gap:24px;position:relative}
+.flow-steps::before,.flow-steps::after{content:'';position:absolute;top:52px;left:14%;right:14%;height:1.5px;z-index:0}
+.flow-steps::before{background:linear-gradient(90deg,transparent,var(--border) 12%,var(--border) 88%,transparent)}
+.flow-steps::after{background:linear-gradient(90deg,var(--heal),color-mix(in srgb,var(--heal) 40%,transparent));
+  transform:scaleX(var(--fill,0));transform-origin:0 50%;transition:transform 1.2s ease .2s;box-shadow:0 0 10px var(--heal-glow)}
+.flow-step{flex:1;display:flex;flex-direction:column;align-items:center;text-align:center;position:relative;z-index:1;padding:32px 26px 28px}
+.flow-step:hover{transform:translateY(-6px);border-color:var(--gold);box-shadow:0 20px 44px -18px rgba(36,23,8,.4),0 0 40px -14px var(--glow)}
+.flow-num{position:absolute;top:14px;left:18px;font-family:'Fraunces',serif;font-size:13px;font-weight:700;letter-spacing:.14em;
+  color:var(--gold);opacity:.55}
+.flow-node{width:62px;height:62px;margin:0 auto 18px;flex:none;border-radius:50%;display:flex;align-items:center;justify-content:center;position:relative;
+  background:radial-gradient(circle at 40% 35%,color-mix(in srgb,var(--gold) 30%,#fff),color-mix(in srgb,var(--gold) 12%,#fff7e6));
+  border:1.5px solid var(--borderStrong);color:var(--gold);box-shadow:0 6px 14px -8px var(--glow)}
+body.magic .flow-node{background:radial-gradient(circle at 40% 35%,rgba(143,232,206,.2),rgba(143,232,206,.05))}
+.flow-node svg{width:28px;height:28px}
+.flow-step-txt h3{font-family:'Fraunces',serif;font-size:18.5px;font-weight:640;color:var(--ink);margin-bottom:9px;transition:color var(--mt)}
+.flow-step-txt p{font-size:14.5px;line-height:1.65;color:var(--inks);max-width:300px}
+@media(max-width:860px){
+  .flow-steps{flex-direction:column;gap:16px}
+  .flow-steps::before,.flow-steps::after{display:none}
+  .flow-step{flex-direction:row;text-align:left;gap:16px;align-items:flex-start;padding:22px 20px}
+  .flow-num{position:static;order:3;margin-left:auto}
+  .flow-node{margin:0;flex:none}
+  .flow-step-txt p{max-width:none}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   12 · WHO IT'S FOR + INCLUDED
+   ══════════════════════════════════════════════════════════════ */
+.for-wrap{display:grid;grid-template-columns:1.25fr .95fr;gap:24px;align-items:stretch}
+.for-card{padding:36px 40px;border-radius:20px;border-width:1.5px}
+.for-card p{font-size:16.5px;line-height:1.8;color:var(--inkm);transition:color var(--mt)}
+.for-card p+p{margin-top:13px}
+.chip-row{display:flex;flex-wrap:wrap;gap:9px;margin-top:20px}
+.chip{font-size:13.5px;font-weight:500;color:var(--inkm);border:1px solid var(--border);border-radius:20px;padding:7px 15px;
+  background:color-mix(in srgb,var(--gold) 4%,transparent);transition:border-color .3s,color .3s}
+.chip:hover{border-color:var(--heal);color:var(--ink)}
+
+.incl-card{padding:32px 34px;border-radius:20px;border-width:1.5px}
+.incl-card h3{font-family:'Fraunces',serif;font-size:20px;font-weight:660;color:var(--ink);margin-bottom:6px}
+.incl-card .sub{font-size:14px;color:var(--inks);margin-bottom:18px}
+.incl-list{list-style:none;display:flex;flex-direction:column;gap:13px}
+.incl-list li{display:flex;gap:12px;align-items:flex-start;font-size:15.5px;line-height:1.55;color:var(--inkm)}
+.incl-list .tick{flex:none;width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin-top:1px;
+  background:color-mix(in srgb,var(--heal) 16%,transparent);border:1px solid color-mix(in srgb,var(--heal) 45%,transparent);color:var(--heal)}
+.incl-list .tick svg{width:12px;height:12px}
+@media(max-width:1000px){.for-wrap{grid-template-columns:1fr}}
+@media(max-width:600px){.for-card,.incl-card{padding:26px 22px}}
+
+/* ══════════════════════════════════════════════════════════════
+   13 · VOICES (carousel)
+   ══════════════════════════════════════════════════════════════ */
+.voices{position:relative}
+.voice-track{display:flex;gap:20px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:4px 2px 18px;
+  scrollbar-width:none;-ms-overflow-style:none}
+.voice-track::-webkit-scrollbar{display:none}
+.voice{flex:0 0 min(420px,86%);scroll-snap-align:start;padding:30px 30px 26px;display:flex;flex-direction:column;gap:14px}
+.voice .q{font-size:44px;line-height:.6;font-family:'Fraunces',serif;color:var(--heal);opacity:.5;height:22px}
+.voice p{font-size:16px;line-height:1.7;color:var(--inkm);flex:1}
+.voice .who{display:flex;align-items:center;gap:11px;padding-top:6px;border-top:1px solid var(--border)}
+.voice .av{width:36px;height:36px;border-radius:50%;flex:none;display:grid;place-items:center;font-weight:700;font-size:14px;color:#fff;
+  background:linear-gradient(135deg,var(--heal),color-mix(in srgb,var(--heal) 62%,black))}
+.voice .who b{font-size:14.5px;font-weight:600;color:var(--ink);display:block}
+.voice .who small{font-size:12.5px;color:var(--inks)}
+.voice-nav{display:flex;gap:10px;justify-content:center;align-items:center;margin-top:4px}
+.vbtn{width:42px;height:42px;border-radius:50%;border:1.5px solid var(--border);background:var(--b1);color:var(--gold);cursor:pointer;
+  display:grid;place-items:center;transition:border-color .3s,box-shadow .3s,transform .25s}
+.vbtn:hover:not(:disabled){border-color:var(--gold);box-shadow:0 0 16px var(--glow);transform:translateY(-2px)}
+.vbtn:disabled{opacity:.34;cursor:default}
+.vbtn svg{width:16px;height:16px}
+.voice-dots{display:flex;gap:7px;margin:0 6px}
+.voice-dots button{width:8px;height:8px;border-radius:50%;border:none;cursor:pointer;padding:0;background:var(--border);transition:background .3s,transform .3s}
+.voice-dots button[aria-current="true"]{background:var(--heal);transform:scale(1.5)}
+.placeholder-note{margin-top:10px;font-size:12.5px;color:var(--inks);text-align:center;font-style:italic}
+
+/* ══════════════════════════════════════════════════════════════
+   14 · FAQ ACCORDION
+   ══════════════════════════════════════════════════════════════ */
+.faq{display:grid;gap:12px;max-width:1000px;margin:0 auto}
+.faq-item{border-radius:16px;overflow:hidden}
+.faq-q{width:100%;display:flex;align-items:center;gap:14px;padding:20px 24px;background:transparent;border:none;cursor:pointer;
+  font-family:'Fraunces',serif;font-size:17px;font-weight:620;color:var(--ink);text-align:left;transition:color .25s}
+.faq-q:hover{color:var(--gold)}
+.faq-q .ico{margin-left:auto;flex:none;width:26px;height:26px;border-radius:50%;display:grid;place-items:center;
+  border:1px solid var(--border);color:var(--gold);transition:transform .35s cubic-bezier(.34,1.3,.64,1),background .3s}
+.faq-q .ico svg{width:13px;height:13px}
+.faq-q[aria-expanded="true"] .ico{transform:rotate(135deg);background:color-mix(in srgb,var(--heal) 16%,transparent)}
+.faq-a{display:grid;grid-template-rows:0fr;transition:grid-template-rows .4s ease}
+.faq-q[aria-expanded="true"]+.faq-a{grid-template-rows:1fr}
+.faq-a>div{overflow:hidden}
+.faq-a p{padding:0 24px 22px;font-size:15.5px;line-height:1.75;color:var(--inks);max-width:80ch}
+
+/* ══════════════════════════════════════════════════════════════
+   15 · BOOKING CARD
+   ══════════════════════════════════════════════════════════════ */
+.book-card{position:relative;border-radius:calc(var(--r) + 6px);overflow:hidden;display:flex;align-items:stretch;
+  background:linear-gradient(165deg,var(--card-a) 0%,var(--card-b) 100%);
+  border:1.5px solid color-mix(in srgb,var(--heal) 34%,var(--borderStrong));box-shadow:var(--sh-md);transition:background var(--mt),box-shadow .5s}
+.book-card::before{content:'';position:absolute;top:0;left:0;right:0;height:5px;z-index:4;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--heal) 55%,transparent),var(--heal),color-mix(in srgb,var(--heal) 55%,transparent));
+  box-shadow:0 0 16px var(--heal-glow)}
+.book-banner{position:relative;flex:0 0 400px;display:flex;align-items:center;justify-content:center;overflow:hidden;
+  background:radial-gradient(120% 100% at 50% 0%,color-mix(in srgb,var(--heal) 18%,transparent) 0%,transparent 62%)}
+body.magic .book-banner{background:radial-gradient(120% 100% at 50% 0%,color-mix(in srgb,var(--heal) 26%,transparent) 0%,transparent 62%)}
+.book-visual{width:190px;height:190px;border-radius:50%;position:relative;z-index:3;display:flex;align-items:center;justify-content:center;
+  background:radial-gradient(circle at 50% 45%,color-mix(in srgb,var(--heal) 46%,var(--b0)) 0%,color-mix(in srgb,var(--heal) 14%,transparent) 66%,transparent 78%);
+  box-shadow:0 14px 32px -12px var(--heal-glow),inset 0 0 0 1px color-mix(in srgb,var(--heal) 22%,transparent)}
+.book-ring{position:absolute;inset:0;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--heal) 70%,transparent);animation:ringSpin 16s linear infinite}
+.book-ring::before{content:'';position:absolute;inset:9px;border-radius:50%;border:1px solid color-mix(in srgb,var(--heal) 42%,transparent)}
+.book-icon{position:relative;z-index:2;width:70px;height:70px;color:var(--heal);filter:drop-shadow(0 0 10px var(--heal-glow))}
+.book-photo{position:absolute;inset:0;border-radius:50%;overflow:hidden;z-index:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.2)}
+.book-photo img{width:100%;height:100%;object-fit:cover;filter:saturate(1.05) brightness(.92)}
+.book-photo::after{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 45%,transparent 20%,color-mix(in srgb,var(--heal) 42%,transparent) 100%)}
+
+.book-body{flex:1;padding:36px 44px;display:flex;flex-direction:column;justify-content:center}
+.book-tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:#fff;
+  background:linear-gradient(120deg,var(--heal),color-mix(in srgb,var(--heal) 72%,black));border-radius:20px;padding:7px 16px;margin-bottom:15px;
+  box-shadow:0 4px 12px -4px var(--heal-glow);align-self:flex-start}
+.book-tag::before{content:'';width:5px;height:5px;border-radius:50%;background:#fff;box-shadow:0 0 4px #fff}
+.book-title{font-family:'Fraunces',serif;font-size:clamp(26px,2.6vw,34px);font-weight:680;color:var(--ink);margin-bottom:11px;letter-spacing:-.01em;transition:color var(--mt)}
+.book-desc{font-size:17px;line-height:1.65;color:var(--inks);margin-bottom:22px;max-width:60ch}
+.book-meta{display:flex;align-items:center;gap:24px;margin-bottom:22px;padding-bottom:22px;position:relative;flex-wrap:wrap}
+.book-meta::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--border) 0%,var(--border) 60%,transparent)}
+.book-duration,.book-badge{display:inline-flex;align-items:center;gap:7px;font-size:15px;font-weight:500;letter-spacing:.03em;color:var(--inks)}
+.book-duration svg{width:17px;height:17px;stroke:var(--inks);flex:none}
+.book-dot{width:7px;height:7px;border-radius:50%;background:var(--heal);box-shadow:0 0 6px var(--heal);flex:none;animation:callPulse 1.6s ease-in-out infinite}
+body.lite .book-dot{animation:none}
+@keyframes callPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.55;transform:scale(.8)}}
+.book-footer{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.book-price{font-family:'Fraunces',serif;font-size:clamp(28px,3vw,36px);font-weight:560;color:var(--ink);white-space:nowrap}
+.book-price .cur{font-family:'Jost',sans-serif;font-size:17px;font-weight:500;color:var(--heal);margin-right:1px}
+.book-price small{display:block;font-family:'Jost',sans-serif;font-size:12.5px;font-weight:400;color:var(--inks);margin-top:3px;white-space:normal}
+@media(max-width:860px){
+  .book-card{flex-direction:column}
+  .book-banner{flex:none;height:200px}
+  .book-body{padding:28px 24px 30px}
+  .hero-cta .btn,.book-footer .btn{width:100%}
+  .sticky-cta .btn{width:auto}
+}
+
+/* ══════════════════════════════════════════════════════════════
+   16 · DISCLAIMER · FLOATING UI
+   ══════════════════════════════════════════════════════════════ */
+.disclaimer{margin-top:26px;padding:18px 24px;border-radius:16px;border:1px dashed var(--border)}
+.disclaimer p{font-size:13.5px;line-height:1.75;color:var(--inks);text-align:center;max-width:860px;margin:0 auto}
+.disclaimer p b{color:var(--gold);font-weight:600}
+
+.to-top{position:fixed;right:22px;bottom:22px;z-index:600;width:46px;height:46px;border-radius:50%;cursor:pointer;
+  border:1.5px solid var(--borderStrong);background:var(--b1);color:var(--gold);display:grid;place-items:center;
+  opacity:0;pointer-events:none;transform:translateY(12px) scale(.9);transition:opacity .3s,transform .3s,box-shadow .3s}
+.to-top.show{opacity:1;pointer-events:auto;transform:none}
+.to-top:hover{box-shadow:0 0 18px var(--glow)}
+.to-top svg{width:17px;height:17px}
+
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:610;display:none;align-items:center;gap:12px;padding:12px 16px;
+  background:color-mix(in srgb,var(--b1) 92%,transparent);backdrop-filter:blur(12px);border-top:1px solid var(--border);
+  transform:translateY(110%);transition:transform .35s cubic-bezier(.22,.68,0,1.18)}
+.sticky-cta.show{transform:none}
+.sticky-cta .s-price{font-family:'Fraunces',serif;font-size:19px;font-weight:620;color:var(--ink);line-height:1.1}
+.sticky-cta .s-price small{display:block;font-family:'Jost',sans-serif;font-size:11.5px;font-weight:400;color:var(--inks)}
+.sticky-cta .btn{margin-left:auto;padding:13px 22px;font-size:13px}
+@media(max-width:860px){
+  .sticky-cta{display:flex}
+  .to-top{bottom:84px}
+  body{padding-bottom:70px}
+}
+
+.cursor-halo{position:fixed;top:0;left:0;width:26px;height:26px;border-radius:50%;pointer-events:none;z-index:650;opacity:0;
+  border:1.5px solid color-mix(in srgb,var(--heal) 70%,transparent);box-shadow:0 0 18px var(--heal-glow);
+  transform:translate3d(-50px,-50px,0);transition:opacity .4s,width .25s,height .25s}
+body.magic .cursor-halo{opacity:.85}
+@media(hover:none){.cursor-halo{display:none}}
+</style>
+</head>
+<body>
+<a class="skip" href="#healing">Skip to content</a>
+<div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+
+<!-- ═══════════════ HEADER ═══════════════ -->
+<nav id="phNav" aria-label="Primary">
+  <span class="nav-sweep" aria-hidden="true"></span>
+  <a class="nav-logo" href="https://www.prasiddhiholistics.com/" data-nav>
+    <img class="nav-logo-img" src="https://static.wixstatic.com/media/0e6224_930cd3a2e18948dea7c72537fc1a3665~mv2.png" alt="Prasiddhe Holistic logo" width="52" height="52">
+    <span>Prasiddhe Holistic</span>
+  </a>
+  <div class="ph-nav-links">
+    <a class="ph-link" href="https://www.prasiddhiholistics.com/" data-nav>Home</a>
+    <a class="ph-link" href="https://www.prasiddhiholistics.com/about-8" data-nav aria-current="page">Services</a>
+    <a class="ph-link" href="https://www.prasiddhiholistics.com/tools" data-nav>Tools</a>
+    <a class="ph-link" href="https://www.prasiddhiholistics.com/about-1-1" data-nav>Courses</a>
+    <a class="ph-link" href="https://www.prasiddhiholistics.com/shop" data-nav>Shop</a>
+  </div>
+  <div class="ph-mode-wrap">
+    <button class="ph-mbtn ph-mbtn-light" id="btnLight" type="button" aria-pressed="true" title="Light mode"><span aria-hidden="true">&#9728;&#65039;</span><span class="sr">Light mode</span></button>
+    <button class="ph-mbtn ph-mbtn-dark" id="btnDark" type="button" aria-pressed="false" title="Night mode"><span aria-hidden="true">&#127769;</span><span class="sr">Night mode</span></button>
+  </div>
+</nav>
+
+<!-- ═══════════════ ATMOSPHERE ═══════════════ -->
+<div class="bg-leaks" aria-hidden="true"></div>
+<div class="bg-sides" aria-hidden="true"></div>
+<canvas id="magicCanvas" aria-hidden="true"></canvas>
+<div class="orb orb-1" aria-hidden="true"></div>
+<div class="orb orb-2" aria-hidden="true"></div>
+<div class="orb orb-3" aria-hidden="true"></div>
+<div class="orb orb-4" aria-hidden="true"></div>
+<div class="orb orb-5" aria-hidden="true"></div>
+<div class="cursor-halo" id="cursorHalo" aria-hidden="true"></div>
+
+<div class="bg-decor" aria-hidden="true">
+  <span class="bd-line l1"></span><span class="bd-line l2"></span>
+  <span class="bd-line l3"></span><span class="bd-line l4"></span>
+  <span class="bd-ring r1"></span><span class="bd-ring r2"></span>
+  <span class="bd-star" style="top:12%;left:20%;font-size:16px;animation-delay:.2s">&#10022;</span>
+  <span class="bd-star" style="top:24%;right:18%;animation-delay:1.1s">&#10022;</span>
+  <span class="bd-star" style="top:58%;left:10%;font-size:18px;animation-delay:.6s">&#10022;</span>
+  <span class="bd-star" style="top:74%;right:12%;font-size:15px;animation-delay:1.8s">&#10022;</span>
+  <span class="bd-star" style="top:40%;left:5%;font-size:11px;animation-delay:2.4s">&#10022;</span>
+  <span class="bd-star" style="top:86%;left:42%;font-size:12px;animation-delay:1.4s">&#10022;</span>
+  <span class="bd-star" style="top:6%;right:32%;font-size:12px;animation-delay:.9s">&#10022;</span>
+  <span class="bd-star" style="top:50%;right:6%;font-size:16px;animation-delay:2.9s">&#10022;</span>
+  <span class="bd-flame left"><svg viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 12C36 30 26 46 26 66C26 92 40 108 50 108C60 108 74 92 74 66C74 50 66 38 60 28C60 40 54 46 48 46C42 46 40 38 42 30C44 22 48 16 50 12Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M50 108C50 108 50 158 50 172" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 10"/></svg></span>
+  <span class="bd-flame right"><svg viewBox="0 0 100 180" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M50 12C36 30 26 46 26 66C26 92 40 108 50 108C60 108 74 92 74 66C74 50 66 38 60 28C60 40 54 46 48 46C42 46 40 38 42 30C44 22 48 16 50 12Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M50 108C50 108 50 158 50 172" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-dasharray="1 10"/></svg></span>
+</div>
+
+<main class="heal-section" id="healing">
+
+  <div class="magic-toggle-wrap fade" style="--d:.02s">
+    <button class="magic-toggle" id="magicToggle" type="button" aria-pressed="false">
+      <span class="bg-glow" aria-hidden="true"></span>
+      <span class="t-star" aria-hidden="true">&#10022;</span>
+      <span class="lbl-n">Enter Energy Mode</span>
+      <span class="lbl-m">Return to Normal</span>
+    </button>
+  </div>
+
+  <!-- ─────────── HERO ─────────── -->
+  <header class="heal-header">
+    <div class="hero-visual">
+      <div class="mandala-wrap fade" style="--d:.08s">
+        <div class="mandala" aria-hidden="true">
+          <div class="mandala-photo"><img src="https://static.wixstatic.com/media/0e6224_449fd03216db4a199a7bd6c1cacb1081~mv2.jpg" alt="" loading="lazy" decoding="async"></div>
+          <span class="spark-field" id="mandalaSparks"></span>
+          <svg viewBox="0 0 150 150" fill="none" stroke="currentColor">
+            <g class="rot-slow"><circle cx="75" cy="75" r="66" stroke-width="1" stroke-dasharray="1 6" opacity=".5"/></g>
+            <g class="rot">
+              <circle cx="75" cy="75" r="52" stroke-width="1" stroke-dasharray="5 8" opacity=".65"/>
+              <path d="M75 23a52 52 0 0 1 0 104" stroke-width="1.2" opacity=".4"/>
+            </g>
+            <g class="rot-rev">
+              <path d="M75 30 82 62 114 68 82 74 75 106 68 74 36 68 68 62Z" stroke-width="1.3" stroke-linejoin="round" opacity=".85"/>
+              <circle cx="75" cy="75" r="34" stroke-width="1" opacity=".35"/>
+            </g>
+            <circle class="core" cx="75" cy="75" r="10" stroke-width="1.5"/>
+            <circle cx="75" cy="75" r="3" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-copy">
+      <div class="eyebrow-wrap fade" style="--d:.05s">
+        <span class="deco-diamond" aria-hidden="true"></span>
+        <p class="eyebrow">Ancient Energy Practice</p>
+      </div>
+
+      <h1 class="heal-title fade" style="--d:.12s">Lama Fera <em>Healing</em></h1>
+      <p class="heal-lede fade" style="--d:.17s">Experience the ancient energy of Lama Fera Healing — a channelled practice that clears heavy, stagnant energy, restores inner balance, and brings mind, body and spirit back into harmony.</p>
+
+      <div class="hero-cta fade" style="--d:.21s">
+        <button class="btn btn-cast" type="button" data-book>
+          Book a Session
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <a class="btn btn-ghost" href="#flow">See how it works</a>
+      </div>
+
+      <div class="assure-row fade" style="--d:.25s">
+        <span class="assure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Private &amp; confidential</span>
+        <span class="assure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a15 15 0 0 1 0 18M12 3a15 15 0 0 0 0 18"/></svg>In-person or remote</span>
+        <span class="assure"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>No experience needed</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ─────────── STATS ─────────── -->
+  <div class="stat-strip reveal" id="statStrip">
+    <div class="stat-item"><div class="stat-num" data-to="7" data-suffix=" Days">7 Days</div><div class="stat-lbl">Live Fire Ceremony</div></div>
+    <div class="stat-item"><div class="stat-num" data-to="100" data-suffix="%">100%</div><div class="stat-lbl">Private &amp; Confidential</div></div>
+    <div class="stat-item"><div class="stat-num" data-to="2" data-suffix="">2</div><div class="stat-lbl">Modes — In-Person or Remote</div></div>
+    <div class="stat-item"><div class="stat-num" data-to="10" data-suffix="+ yrs">10+ yrs</div><div class="stat-lbl">Practitioner Experience</div></div>
+  </div>
+
+  <!-- ─────────── BENEFITS ─────────── -->
+  <div class="sec-label reveal" id="labelBenefits"><span class="ln" aria-hidden="true"></span><h2>What It May Help With</h2><span class="ln" aria-hidden="true"></span></div>
+  <div class="benefits-grid" id="benefitsGrid"></div>
+
+  <!-- ─────────── FLOW ─────────── -->
+  <div class="sec-label reveal" id="labelFlow"><span class="ln" aria-hidden="true"></span><h2 id="flow">How A Session Works</h2><span class="ln" aria-hidden="true"></span></div>
+  <div class="flow-steps" id="flowSteps">
+    <article class="flow-step surface spot reveal" style="--d:0s">
+      <span class="flow-num">01</span>
+      <div class="flow-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 12S6 5.5 12 5.5 21.5 12 21.5 12 18 18.5 12 18.5 2.5 12 2.5 12Z"/><circle cx="12" cy="12" r="3"/></svg></div>
+      <div class="flow-step-txt"><h3>Set your intention</h3><p>We begin with a short conversation about what you want to release or invite in. With your permission, the practitioner starts channelling Lama Fera energy toward that intention.</p></div>
+    </article>
+    <article class="flow-step surface spot reveal" style="--d:.1s">
+      <span class="flow-num">02</span>
+      <div class="flow-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 4 4.5 4 8a4 4 0 0 1-8 0c0-1.6.8-2.7 1.6-3.6C10.6 8 12 6 12 3Z"/><path d="M12 21v-2"/></svg></div>
+      <div class="flow-step-txt"><h3>Relax and receive</h3><p>You simply rest and stay open. There is no chanting, effort or prior meditation experience required — most people describe warmth, lightness or a deep settling.</p></div>
+    </article>
+    <article class="flow-step surface spot reveal" style="--d:.2s">
+      <span class="flow-num">03</span>
+      <div class="flow-node" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.3 4.7L19.5 8.5l-3.75 3.65.9 5.35L12 15l-4.65 2.45.9-5.35L4.5 8.5l5.2-.8L12 3z"/></svg></div>
+      <div class="flow-step-txt"><h3>Close and integrate</h3><p>We close the session gently and share simple aftercare — water, rest and a few grounding practices. Sessions run in person or remotely; distance is no barrier.</p></div>
+    </article>
+  </div>
+
+  <!-- ─────────── WHO / INCLUDED ─────────── -->
+  <div class="sec-label reveal" id="labelFor"><span class="ln" aria-hidden="true"></span><h2>Who This Is For</h2><span class="ln" aria-hidden="true"></span></div>
+  <div class="for-wrap">
+    <div class="for-card surface spot reveal">
+      <p>Lama Fera Healing suits anyone seeking emotional balance, energetic cleansing, spiritual growth, or support through a difficult phase of life — whether you feel emotionally overwhelmed, mentally stressed, spiritually blocked, or simply surrounded by negativity.</p>
+      <p>No prior experience with meditation or energy work is required. You only need openness and a willingness to receive.</p>
+      <div class="chip-row">
+        <span class="chip">Feeling drained or heavy</span>
+        <span class="chip">Stress &amp; overthinking</span>
+        <span class="chip">Grief or life transition</span>
+        <span class="chip">Repeating blocks</span>
+        <span class="chip">Sleep &amp; restlessness</span>
+        <span class="chip">Spiritual growth</span>
+      </div>
+    </div>
+    <aside class="incl-card surface spot reveal" style="--d:.1s">
+      <h3>What's included</h3>
+      <p class="sub">Every booking covers the full arc of the session.</p>
+      <ul class="incl-list">
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5 4.6 9 10 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>A pre-session intention call</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5 4.6 9 10 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>The full Lama Fera fire ceremony</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5 4.6 9 10 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Daily energy work across the cycle</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5 4.6 9 10 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Personal aftercare guidance</li>
+        <li><span class="tick" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M2 6.5 4.6 9 10 3.2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></span>Follow-up message after completion</li>
+      </ul>
+    </aside>
+  </div>
+
+  <!-- ─────────── VOICES ─────────── -->
+  <div class="sec-label reveal" id="labelVoices"><span class="ln" aria-hidden="true"></span><h2>Voices From Sessions</h2><span class="ln" aria-hidden="true"></span></div>
+  <div class="voices reveal" id="voices">
+    <div class="voice-track" id="voiceTrack" tabindex="0" role="group" aria-label="Client reflections, scrollable"></div>
+    <div class="voice-nav">
+      <button class="vbtn" type="button" id="vPrev" aria-label="Previous reflection"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+      <div class="voice-dots" id="voiceDots" role="tablist" aria-label="Choose reflection"></div>
+      <button class="vbtn" type="button" id="vNext" aria-label="Next reflection"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+    </div>
+    <p class="placeholder-note">Placeholder text — replace each quote with a real client reflection before publishing.</p>
+  </div>
+
+  <!-- ─────────── FAQ ─────────── -->
+  <div class="sec-label reveal" id="labelFaq"><span class="ln" aria-hidden="true"></span><h2>Questions, Answered</h2><span class="ln" aria-hidden="true"></span></div>
+  <div class="faq" id="faq"></div>
+
+  <!-- ─────────── BOOKING ─────────── -->
+  <div class="sec-label reveal" id="labelBook"><span class="ln" aria-hidden="true"></span><h2>Begin Your Session</h2><span class="ln" aria-hidden="true"></span></div>
+  <section class="book-card reveal" id="bookCard" aria-label="Book a Lama Fera healing session">
+    <div class="book-banner">
+      <span class="spark-field" id="bookSparks" aria-hidden="true"></span>
+      <div class="book-visual" aria-hidden="true">
+        <div class="book-photo"><img src="https://static.wixstatic.com/media/0e6224_449fd03216db4a199a7bd6c1cacb1081~mv2.jpg" alt="" loading="lazy" decoding="async"></div>
+        <div class="book-ring"></div>
+        <div class="book-icon">
+          <svg viewBox="0 0 44 44" fill="none"><path d="M22 6c1.8 5.4 7.2 8 7.2 14.4A7.2 7.2 0 0 1 22 27.6a7.2 7.2 0 0 1-7.2-7.2C14.8 14 20.2 11.4 22 6Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M22 33v5" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+        </div>
+      </div>
+    </div>
+    <div class="book-body">
+      <p class="book-tag">Energy Healing Session</p>
+      <h3 class="book-title">Lama Fera Healing</h3>
+      <p class="book-desc">A guided energy-healing cycle to clear blockages, ease stress and restore balance — held in person or remotely, wherever you are.</p>
+      <div class="book-meta">
+        <span class="book-duration">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
+          7 Days Live
+        </span>
+        <span class="book-badge"><span class="book-dot" aria-hidden="true"></span>In-Person or Remote</span>
+        <span class="book-badge"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" style="width:16px;height:16px" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>Confidential</span>
+      </div>
+      <div class="book-footer">
+        <p class="book-price"><span class="cur">&#8377;</span>6,500<small>Update with your actual pricing</small></p>
+        <button class="btn btn-cast" type="button" data-book data-service="lama_fera_healing" data-duration="healing45">
+          Book This Session
+          <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <div class="disclaimer reveal" id="disclaimer">
+    <p><b>Please note:</b> Lama Fera Healing is a complementary spiritual wellness practice. It is not intended to diagnose, treat, cure or replace professional medical, psychological or psychiatric care. If you have a medical condition, please consult a qualified healthcare professional.</p>
+  </div>
+</main>
+
+<button class="to-top" id="toTop" type="button" aria-label="Back to top"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M8 13V3M3.5 7.5 8 3l4.5 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
+
+<div class="sticky-cta" id="stickyCta">
+  <span class="s-price">&#8377;6,500<small>Lama Fera Healing · 7 days</small></span>
+  <button class="btn btn-cast" type="button" data-book>Book now</button>
+</div>
+
+<script>
+(function(){
+'use strict';
+
+/* ══════════════════════════════════════════════════════════════
+   A · CAPABILITY BUDGET
+   ══════════════════════════════════════════════════════════════ */
+var mqReduce = window.matchMedia ? matchMedia('(prefers-reduced-motion:reduce)') : {matches:false, addEventListener:function(){}};
+var REDUCED  = mqReduce.matches;
+
+var LOWEND = (function(){
+  try{
+    if(REDUCED) return true;
+    var m = navigator.deviceMemory;
+    if(typeof m === 'number' && m <= 2) return true;
+    if(navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 2) return true;
+    var c = navigator.connection || navigator.mozConnection;
+    if(c && (c.saveData === true || /^(slow-)?2g$/.test(c.effectiveType || ''))) return true;
+  }catch(e){}
+  return false;
+})();
+if(LOWEND) document.body.classList.add('lite');
+
+var IS_MOBILE = window.matchMedia ? matchMedia('(max-width:700px)').matches : false;
+var HAS_HOVER = window.matchMedia ? matchMedia('(hover:hover)').matches : true;
+
+function $(s,r){ return (r||document).querySelector(s); }
+function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
+function store(k,v){ try{ v===undefined ? localStorage.removeItem(k) : localStorage.setItem(k,v); }catch(e){} }
+function recall(k){ try{ return localStorage.getItem(k); }catch(e){ return null; } }
+function post(msg){ try{ window.parent.postMessage(msg,'*'); }catch(e){} }
+
+/* ══════════════════════════════════════════════════════════════
+   B · THEME — one source of truth
+   ══════════════════════════════════════════════════════════════ */
+var THEME_KEY = 'ph-theme';
+var THEME_LIGHT = '#FBF3DE', THEME_DARK = '#071615';
+var metaTheme = $('#themeColorMeta');
+var btnLight = $('#btnLight'), btnDark = $('#btnDark'), magicToggle = $('#magicToggle');
+var isMagic = false;
+
+function applyTheme(dark, opts){
+  opts = opts || {};
+  dark = !!dark;
+  if(dark === isMagic && opts.force !== true) { syncThemeUI(); return; }
+  isMagic = dark;
+  document.body.classList.toggle('magic', dark);
+  if(metaTheme) metaTheme.setAttribute('content', dark ? THEME_DARK : THEME_LIGHT);
+  syncThemeUI();
+  if(opts.persist !== false) store(THEME_KEY, dark ? 'dark' : 'light');
+  if(opts.broadcast !== false) post({type:'PH_THEME', dark:dark});
+  particles.onTheme(dark);
+}
+function syncThemeUI(){
+  if(btnLight) btnLight.setAttribute('aria-pressed', String(!isMagic));
+  if(btnDark)  btnDark.setAttribute('aria-pressed', String(isMagic));
+  if(magicToggle) magicToggle.setAttribute('aria-pressed', String(isMagic));
+}
+if(btnLight) btnLight.addEventListener('click', function(){ applyTheme(false); });
+if(btnDark)  btnDark.addEventListener('click',  function(){ applyTheme(true);  });
+if(magicToggle) magicToggle.addEventListener('click', function(){ applyTheme(!isMagic); });
+
+/* parent page can drive the theme, and stays authoritative when it does */
+window.addEventListener('message', function(e){
+  var d = e.data || {};
+  if(d && d.type === 'PH_THEME') applyTheme(!!d.dark, {broadcast:false});
+});
+/* legacy global kept for embeds that already call it */
+window.phSetTheme = function(dark){ applyTheme(!!dark); };
+
+/* ══════════════════════════════════════════════════════════════
+   C · NAV — real links, parent routing when embedded
+   ══════════════════════════════════════════════════════════════ */
+$$('[data-nav]').forEach(function(a){
+  a.addEventListener('click', function(ev){
+    if(ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button !== 0) return; /* let the browser do its thing */
+    var url = a.getAttribute('href');
+    if(!url) return;
+    ev.preventDefault();
+    var rel = url.replace(/^https?:\/\/[^\/]+/, '') || url;
+    post({type:'OPEN_LINK', url:rel});
+    setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 250);
+  });
+});
+window.phNavGo = function(url){
+  var rel = String(url).replace(/^https?:\/\/[^\/]+/, '') || url;
+  post({type:'OPEN_LINK', url:rel});
+  setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 250);
+};
+
+/* logo background key-out — silently skipped when the host blocks CORS */
+(function(){
+  var img = $('.nav-logo-img'); if(!img) return;
+  var pic = new Image(); pic.crossOrigin = 'anonymous';
+  pic.onload = function(){
+    try{
+      var S = 256, cv = document.createElement('canvas'); cv.width = cv.height = S;
+      var x = cv.getContext('2d'); x.drawImage(pic, 0, 0, S, S);
+      var data = x.getImageData(0, 0, S, S), p = data.data;
+      var br = p[0], bg = p[1], bb = p[2], T = 60;
+      function isBg(n){ var o = n*4; return Math.abs(p[o]-br)<T && Math.abs(p[o+1]-bg)<T && Math.abs(p[o+2]-bb)<T; }
+      var seen = new Uint8Array(S*S), stack = [], i;
+      for(i=0;i<S;i++){ stack.push(i, (S-1)*S+i, i*S, i*S+S-1); }
+      while(stack.length){
+        var n = stack.pop();
+        if(seen[n] || !isBg(n)) continue;
+        seen[n] = 1; p[n*4+3] = 0;
+        var nx = n % S;
+        if(nx>0) stack.push(n-1);
+        if(nx<S-1) stack.push(n+1);
+        if(n>=S) stack.push(n-S);
+        if(n<S*(S-1)) stack.push(n+S);
+      }
+      x.putImageData(data, 0, 0);
+      img.src = cv.toDataURL('image/png');
+      img.classList.add('keyed');
+    }catch(e){}
+  };
+  pic.src = img.currentSrc || img.src;
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   D · CONTENT
+   ══════════════════════════════════════════════════════════════ */
+var ic = {
+  flame:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c1 3 4 4.5 4 8a4 4 0 0 1-8 0c0-1.6.8-2.7 1.6-3.6C10.6 8 12 6 12 3Z"/></svg>',
+  mind:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 13a8 8 0 1 1 16 0c0 3-2 4-2 7H6c0-3-2-4-2-7Z"/><path d="M9 20h6"/></svg>',
+  heart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-4.5-9.3-9A5.4 5.4 0 0 1 12 6.5 5.4 5.4 0 0 1 21.3 12C19 16.5 12 21 12 21Z"/></svg>',
+  sun:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M4.2 4.2l2.1 2.1M17.7 17.7l2.1 2.1M2 12h3M19 12h3M4.2 19.8l2.1-2.1M17.7 6.3l2.1-2.1"/><circle cx="12" cy="12" r="4.5"/></svg>',
+  star:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2.3 4.7L19.5 8.5l-3.75 3.65.9 5.35L12 15l-4.65 2.45.9-5.35L4.5 8.5l5.2-.8L12 3z"/></svg>',
+  focus:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3.4"/><path d="M12 3.5v2.2M12 18.3v2.2M3.5 12h2.2M18.3 12h2.2M6 6l1.6 1.6M16.4 16.4 18 18M18 6l-1.6 1.6M7.6 16.4 6 18"/></svg>'
+};
+
+var benefits = [
+  {ic:ic.flame, t:'Releases heavy &amp; stagnant energy', d:'The ceremony is traditionally used to clear dense energy and emotional residue that lingers after conflict, loss or long stress.'},
+  {ic:ic.mind,  t:'Eases stress, worry &amp; mental noise', d:'Most people leave a session noticeably quieter inside — the looping thoughts soften and the body finally gets to rest.'},
+  {ic:ic.heart, t:'Restores emotional balance', d:'Rather than pushing feelings away, the work helps them settle, so grief, anger or anxiety feel workable again.'},
+  {ic:ic.sun,   t:'Rebuilds positive energy &amp; confidence', d:'As heaviness clears, motivation tends to return on its own — the sense of being able to act rather than endure.'},
+  {ic:ic.star,  t:'Supports spiritual growth &amp; awareness', d:'A gentle, structured way to deepen your own practice and become more sensitive to your own energy.'},
+  {ic:ic.focus, t:'Improves clarity, focus &amp; well-being', d:'Clearer decisions, steadier sleep and a stronger baseline of everyday well-being are the changes clients report most.'}
+];
+var grid = $('#benefitsGrid');
+if(grid){
+  benefits.forEach(function(b,i){
+    var el = document.createElement('article');
+    el.className = 'benefit surface spot reveal';
+    el.style.setProperty('--d', (i * 0.06) + 's');
+    el.innerHTML = '<span class="b-ic" aria-hidden="true">'+b.ic+'</span><h3>'+b.t+'</h3><p>'+b.d+'</p>';
+    grid.appendChild(el);
+  });
+}
+
+/* Placeholder reflections — swap for real, consented client quotes. */
+var voices = [
+  {q:'Placeholder reflection — replace with a real client quote about how the session felt and what shifted afterwards.', n:'Client name', m:'Remote session'},
+  {q:'Placeholder reflection — a second quote works well here, ideally from someone who came in during a hard phase.', n:'Client name', m:'In-person session'},
+  {q:'Placeholder reflection — a third quote about the practitioner and how held the process felt from start to finish.', n:'Client name', m:'Remote session'},
+  {q:'Placeholder reflection — a short one is fine. Two sentences with something concrete beats a long general one.', n:'Client name', m:'In-person session'}
+];
+var track = $('#voiceTrack'), dots = $('#voiceDots');
+if(track){
+  voices.forEach(function(v,i){
+    var el = document.createElement('figure');
+    el.className = 'voice surface spot';
+    el.setAttribute('aria-roledescription','reflection');
+    el.setAttribute('aria-label', (i+1) + ' of ' + voices.length);
+    el.innerHTML =
+      '<span class="q" aria-hidden="true">&ldquo;</span>' +
+      '<blockquote><p>' + v.q + '</p></blockquote>' +
+      '<figcaption class="who"><span class="av" aria-hidden="true">' + v.n.charAt(0) + '</span>' +
+      '<span><b>' + v.n + '</b><small>' + v.m + '</small></span></figcaption>';
+    track.appendChild(el);
+
+    var dot = document.createElement('button');
+    dot.type = 'button';
+    dot.setAttribute('role','tab');
+    dot.setAttribute('aria-label','Reflection ' + (i+1));
+    dot.setAttribute('aria-current', i === 0 ? 'true' : 'false');
+    dot.addEventListener('click', function(){ goVoice(i); });
+    dots.appendChild(dot);
+  });
+
+  function cards(){ return $$('.voice', track); }
+  /* left-aligned stepping: one click always moves exactly one card, and the
+     dot indicator tracks the leading card rather than whatever sits nearest
+     the centre (which skips on wide screens showing three at once). */
+  function goVoice(i){
+    var c = cards()[i]; if(!c) return;
+    track.scrollTo({left: c.offsetLeft - track.offsetLeft, behavior: REDUCED ? 'auto' : 'smooth'});
+  }
+  function current(){
+    var left = track.scrollLeft + track.offsetLeft, best = 0, bd = Infinity;
+    cards().forEach(function(c,i){
+      var d = Math.abs(c.offsetLeft - left);
+      if(d < bd){ bd = d; best = i; }
+    });
+    return best;
+  }
+  var vPrev = $('#vPrev'), vNext = $('#vNext'), dTick = 0;
+  function syncVoiceNav(){
+    var cur = current();
+    $$('button', dots).forEach(function(d,i){ d.setAttribute('aria-current', String(i === cur)); });
+    /* wide screens show several cards at once, so the track runs out of
+       scroll before the last card is ever the leading one — reflect that
+       instead of leaving a button that does nothing. */
+    var max = track.scrollWidth - track.clientWidth;
+    vPrev.disabled = track.scrollLeft <= 2;
+    vNext.disabled = track.scrollLeft >= max - 2;
+  }
+  track.addEventListener('scroll', function(){
+    if(dTick) return;
+    dTick = requestAnimationFrame(function(){ dTick = 0; syncVoiceNav(); });
+  }, {passive:true});
+  vPrev.addEventListener('click', function(){ goVoice(Math.max(0, current() - 1)); });
+  vNext.addEventListener('click', function(){ goVoice(Math.min(voices.length - 1, current() + 1)); });
+  window.addEventListener('resize', function(){ syncVoiceNav(); }, {passive:true});
+  /* width can change with the viewport or late-loading fonts — re-sync
+     whenever the track is actually re-measured */
+  if(window.ResizeObserver) new ResizeObserver(syncVoiceNav).observe(track);
+  syncVoiceNav();
+  track.addEventListener('keydown', function(e){
+    if(e.key === 'ArrowRight'){ e.preventDefault(); goVoice(Math.min(voices.length - 1, current() + 1)); }
+    if(e.key === 'ArrowLeft'){  e.preventDefault(); goVoice(Math.max(0, current() - 1)); }
+  });
+}
+
+var faqs = [
+  {q:'Do I need to believe in energy healing for it to help?', a:'No. You need nothing more than willingness to sit with the process. Many people arrive sceptical and simply notice how they feel afterwards — that is a perfectly good way to approach it.'},
+  {q:'How is a remote session different from an in-person one?', a:'The structure is identical: the same intention-setting, the same ceremony, the same aftercare. In person you rest in the room while the work happens; remotely you rest wherever you are, at an agreed time. Clients report the two feeling equally strong.'},
+  {q:'What does the 7-day cycle involve?', a:'The ceremony is held live and then carried forward with daily energy work across the cycle. You are not required to be present every day — you will be told which windows to keep quiet and how to support the process with rest and water.'},
+  {q:'Will I feel anything during the session?', a:'It varies. Warmth, tingling, waves of emotion, heaviness lifting off the chest, or simply falling deeply asleep are all common. Feeling very little during the session does not mean nothing happened; the shift often shows up over the following days.'},
+  {q:'Is this a replacement for medical or psychological care?', a:'No, and it should never be treated as one. Lama Fera Healing is a complementary spiritual practice. If you are managing a medical or mental-health condition, please keep working with your qualified healthcare professional — this can sit alongside that care, not in place of it.'},
+  {q:'How do I prepare, and what happens after?', a:'Come rested, eat lightly and be clear about your intention. Afterwards, drink plenty of water, keep the evening gentle and expect to sleep well. You will receive simple aftercare notes and a follow-up message once the cycle completes.'}
+];
+var faqWrap = $('#faq');
+if(faqWrap){
+  faqs.forEach(function(f,i){
+    var id = 'faq-a-' + i;
+    var item = document.createElement('div');
+    item.className = 'faq-item surface spot reveal';
+    item.style.setProperty('--d', Math.min(i, 4) * 0.05 + 's');
+    item.innerHTML =
+      '<button class="faq-q" type="button" aria-expanded="false" aria-controls="' + id + '">' +
+        '<span>' + f.q + '</span>' +
+        '<span class="ico" aria-hidden="true"><svg viewBox="0 0 12 12" fill="none"><path d="M6 1.5v9M1.5 6h9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg></span>' +
+      '</button>' +
+      '<div class="faq-a" id="' + id + '" role="region"><div><p>' + f.a + '</p></div></div>';
+    faqWrap.appendChild(item);
+  });
+  faqWrap.addEventListener('click', function(e){
+    var btn = e.target.closest ? e.target.closest('.faq-q') : null;
+    if(!btn) return;
+    var open = btn.getAttribute('aria-expanded') === 'true';
+    $$('.faq-q', faqWrap).forEach(function(b){ b.setAttribute('aria-expanded','false'); });
+    btn.setAttribute('aria-expanded', String(!open));
+  });
+}
+
+/* decorative sparks */
+function sparkField(n){
+  var h = '';
+  for(var s = 0; s < n; s++){
+    h += '<i style="left:' + (Math.random()*90+5).toFixed(1) + '%;top:' + (Math.random()*80+8).toFixed(1) +
+         '%;--sd:' + (3+Math.random()*3).toFixed(2) + 's;--sdl:' + (Math.random()*4).toFixed(2) + 's"></i>';
+  }
+  return h;
+}
+if(!LOWEND){
+  var bs = $('#bookSparks'), ms = $('#mandalaSparks');
+  if(bs) bs.innerHTML = sparkField(8);
+  if(ms) ms.innerHTML = sparkField(6);
+}
+
+/* ══════════════════════════════════════════════════════════════
+   E · REVEAL · COUNT-UP · FLOW LINE
+   ══════════════════════════════════════════════════════════════ */
+function countUp(el){
+  var to = parseFloat(el.getAttribute('data-to'));
+  var suffix = el.getAttribute('data-suffix') || '';
+  if(isNaN(to)) return;
+  if(REDUCED){ el.textContent = to + suffix; return; }
+  var t0 = null, dur = 1100;
+  function step(ts){
+    if(t0 === null) t0 = ts;
+    var p = Math.min(1, (ts - t0) / dur);
+    var eased = 1 - Math.pow(1 - p, 3);
+    el.textContent = Math.round(to * eased) + suffix;
+    if(p < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+var pending = $$('.reveal');
+var flowEl = $('#flowSteps');
+if(flowEl && pending.indexOf(flowEl) === -1) pending.push(flowEl);
+
+function revealEl(el){
+  if(el.classList.contains('visible') && el.id !== 'flowSteps') return;
+  el.classList.add('visible');
+  if(el.id === 'statStrip') $$('.stat-num', el).forEach(countUp);
+  if(el.id === 'flowSteps') el.style.setProperty('--fill','1');
+  var at = pending.indexOf(el);
+  if(at > -1) pending.splice(at, 1);
+  if(io) io.unobserve(el);
+}
+
+var io = null;
+if('IntersectionObserver' in window){
+  io = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ if(en.isIntersecting) revealEl(en.target); });
+  }, {threshold:0.08, rootMargin:'0px 0px -6% 0px'});
+  pending.slice().forEach(function(el){ io.observe(el); });
+}else{
+  pending.slice().forEach(revealEl);
+}
+
+/* Safety net: a fast fling can carry a section past the viewport between
+   observer callbacks, which would leave it stuck at opacity 0 for good.
+   Sweep whatever is still pending on each scroll tick — the list only
+   ever shrinks, so this costs nothing once the page has been read. */
+function sweepReveals(){
+  if(!pending.length) return;
+  var vh = window.innerHeight;
+  pending.slice().forEach(function(el){
+    var r = el.getBoundingClientRect();
+    if(r.top < vh * 0.94 && r.bottom > 0 - r.height) revealEl(el);
+  });
+}
+
+/* ══════════════════════════════════════════════════════════════
+   F · SCROLL UI
+   ══════════════════════════════════════════════════════════════ */
+var bar = $('#scrollProgress'), nav = $('#phNav'), toTop = $('#toTop'), sticky = $('#stickyCta');
+var bookCard = $('#bookCard'), hero = $('.heal-header');
+var bookInView = false, heroPassed = false, sTick = 0;
+
+function onScroll(){
+  if(sTick) return;
+  sTick = requestAnimationFrame(function(){
+    sTick = 0;
+    var y = window.scrollY || document.documentElement.scrollTop;
+    var max = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    if(bar) bar.style.setProperty('--p', Math.min(1, y / max).toFixed(4));
+    if(nav) nav.classList.toggle('shrunk', y > 40);
+    if(toTop) toTop.classList.toggle('show', y > 600);
+    if(sticky) sticky.classList.toggle('show', heroPassed && !bookInView);
+    sweepReveals();
+  });
+}
+window.addEventListener('scroll', onScroll, {passive:true});
+onScroll();
+
+if('IntersectionObserver' in window){
+  if(bookCard) new IntersectionObserver(function(e){ bookInView = e[0].isIntersecting; onScroll(); }, {threshold:0.2}).observe(bookCard);
+  if(hero) new IntersectionObserver(function(e){ heroPassed = !e[0].isIntersecting; onScroll(); }, {threshold:0.1}).observe(hero);
+}
+if(toTop) toTop.addEventListener('click', function(){
+  window.scrollTo({top:0, behavior: REDUCED ? 'auto' : 'smooth'});
+});
+
+/* card spotlight + cursor halo */
+var halo = $('#cursorHalo'), hx = -50, hy = -50, haloTick = 0;
+if(HAS_HOVER && !LOWEND){
+  document.addEventListener('pointermove', function(e){
+    hx = e.clientX; hy = e.clientY;
+    if(!haloTick){
+      haloTick = requestAnimationFrame(function(){
+        haloTick = 0;
+        if(halo) halo.style.transform = 'translate3d(' + (hx-13) + 'px,' + (hy-13) + 'px,0)';
+      });
+    }
+    var card = e.target.closest ? e.target.closest('.spot') : null;
+    if(!card) return;
+    var r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', (e.clientX - r.left) + 'px');
+    card.style.setProperty('--my', (e.clientY - r.top) + 'px');
+  }, {passive:true});
+}
+
+/* ══════════════════════════════════════════════════════════════
+   G · BOOKING
+   serviceKey "lama_fera_healing" / durationKey "healing45" must
+   exist in the SERVICES object of your /service-form embed.
+   ══════════════════════════════════════════════════════════════ */
+var BOOKING_PAGE = 'https://www.prasiddhiholistics.com/service-form';
+var DEFAULTS = {service:'lama_fera_healing', duration:'healing45'};
+
+$$('[data-book]').forEach(function(btn){
+  btn.addEventListener('click', function(){
+    var service  = btn.getAttribute('data-service')  || DEFAULTS.service;
+    var duration = btn.getAttribute('data-duration') || DEFAULTS.duration;
+    var url = BOOKING_PAGE + '?service=' + encodeURIComponent(service) + '&duration=' + encodeURIComponent(duration);
+    post({type:'SB_GO_TO_BOOKING', url:url});
+    setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 400);
+  });
+});
+
+/* ══════════════════════════════════════════════════════════════
+   H · ENERGY-MODE PARTICLES
+   Viewport-sized canvas (never scrollHeight), DPR-capped, paused
+   whenever the tab is hidden or the theme is light.
+   ══════════════════════════════════════════════════════════════ */
+var particles = (function(){
+  var canvas = $('#magicCanvas');
+  if(!canvas || LOWEND || !canvas.getContext) {
+    return {onTheme:function(){}, burst:function(){}};
+  }
+  var ctx = canvas.getContext('2d');
+  var W = 0, H = 0, dpr = 1, raf = null, on = false;
+  var dust = [], stars = [];
+  var STAR_N  = IS_MOBILE ? 80  : 170;
+  var CAP     = IS_MOBILE ? 130 : 240;
+  var COLS = ['#8FE8CE','#5FD9BB','#2FE7C4','#33C1FF','#D9FFF4','#ffffff','#AAF6E4','#55D9C0','#B4FFEC'];
+
+  function resize(){
+    dpr = Math.min(window.devicePixelRatio || 1, 2);
+    W = window.innerWidth; H = window.innerHeight;
+    canvas.width  = Math.floor(W * dpr);
+    canvas.height = Math.floor(H * dpr);
+    ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+  function initStars(){
+    stars = [];
+    for(var i = 0; i < STAR_N; i++){
+      stars.push({x:Math.random()*W, y:Math.random()*H, r:Math.random()*1.5+0.2,
+        phase:Math.random()*Math.PI*2, speed:Math.random()*0.01+0.004, drift:Math.random()*0.3-0.15});
+    }
+  }
+  function spawn(x, y, burst){
+    if(dust.length >= CAP) return;
+    var n = burst ? 8 : 1;
+    for(var i = 0; i < n; i++){
+      var angle = burst ? (Math.PI*2*i/n + Math.random()*0.5) : (Math.random()*Math.PI*2);
+      var speed = burst ? (Math.random()*3+1) : (Math.random()*1.2+0.2);
+      dust.push({
+        x: (x === undefined ? Math.random()*W : x),
+        y: (y === undefined ? Math.random()*H*0.9 + H*0.05 : y),
+        vx: Math.cos(angle)*speed,
+        vy: Math.sin(angle)*speed - (Math.random()*1.5+0.3),
+        r: Math.random()*3.5+0.8,
+        alpha: Math.random()*0.75+0.25,
+        decay: Math.random()*0.007+0.003,
+        color: COLS[(Math.random()*COLS.length)|0],
+        phase: Math.random()*Math.PI*2,
+        twinkle: Math.random()*0.07+0.02,
+        star: Math.random() < 0.15
+      });
+    }
+  }
+  function drawStarShape(cx, cy, r, alpha, color){
+    ctx.save(); ctx.globalAlpha = alpha; ctx.fillStyle = color; ctx.beginPath();
+    for(var i = 0; i < 5; i++){
+      var a = Math.PI/2 + i*Math.PI*2/5, b = a + Math.PI/5;
+      if(i === 0) ctx.moveTo(cx + r*Math.cos(a), cy + r*Math.sin(a));
+      else ctx.lineTo(cx + r*Math.cos(a), cy + r*Math.sin(a));
+      ctx.lineTo(cx + r*0.4*Math.cos(b), cy + r*0.4*Math.sin(b));
+    }
+    ctx.closePath(); ctx.fill(); ctx.restore();
+  }
+
+  var tick = 0;
+  function frame(){
+    if(!on){ raf = null; return; }
+    ctx.clearRect(0, 0, W, H);
+
+    for(var i = 0; i < stars.length; i++){
+      var s = stars[i];
+      s.phase += s.speed; s.x += s.drift;
+      if(s.x < 0) s.x = W; else if(s.x > W) s.x = 0;
+      var a = 0.1 + 0.7 * (0.5 + 0.5*Math.sin(s.phase));
+      ctx.beginPath(); ctx.arc(s.x, s.y, s.r, 0, Math.PI*2);
+      ctx.fillStyle = 'rgba(150,230,210,' + a.toFixed(3) + ')'; ctx.fill();
+    }
+
+    var t = Date.now() * 0.0005;
+    var gx = ctx.createRadialGradient(W*0.5 + Math.sin(t)*W*0.1, H*0.3 + Math.cos(t*0.7)*H*0.05, 0, W*0.5, H*0.3, W*0.6);
+    gx.addColorStop(0, 'rgba(30,190,160,0.05)');
+    gx.addColorStop(0.5, 'rgba(20,160,140,0.025)');
+    gx.addColorStop(1, 'transparent');
+    ctx.fillStyle = gx; ctx.fillRect(0, 0, W, H);
+
+    if(++tick % 3 === 0 && dust.length < CAP){
+      var n = (Math.random()*3|0) + 1;
+      for(var k = 0; k < n; k++) spawn();
+    }
+
+    var live = [];
+    for(var j = 0; j < dust.length; j++){
+      var p = dust[j];
+      p.x += p.vx; p.y += p.vy; p.vx *= 0.99; p.vy *= 0.99;
+      p.alpha -= p.decay; p.phase += p.twinkle;
+      if(p.alpha <= 0.012) continue;
+      live.push(p);
+      var glow = 0.5 + 0.5*Math.sin(p.phase), al = p.alpha * glow;
+      var gr = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r*5);
+      gr.addColorStop(0, p.color + 'bb'); gr.addColorStop(1, 'transparent');
+      ctx.save(); ctx.globalAlpha = al*0.5; ctx.beginPath(); ctx.arc(p.x, p.y, p.r*5, 0, Math.PI*2);
+      ctx.fillStyle = gr; ctx.fill(); ctx.restore();
+      if(p.star){ drawStarShape(p.x, p.y, p.r*1.5, al, p.color); }
+      else{ ctx.save(); ctx.globalAlpha = al; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI*2); ctx.fillStyle = p.color; ctx.fill(); ctx.restore(); }
+    }
+    dust = live;
+    raf = requestAnimationFrame(frame);
+  }
+
+  function start(){
+    if(on) return;
+    on = true; resize(); initStars();
+    if(!raf) raf = requestAnimationFrame(frame);
+  }
+  function stop(){
+    on = false; dust = [];
+    if(raf){ cancelAnimationFrame(raf); raf = null; }
+    ctx.clearRect(0, 0, W, H);
+  }
+
+  var rTick = 0;
+  window.addEventListener('resize', function(){
+    if(rTick) return;
+    rTick = setTimeout(function(){ rTick = 0; if(on){ resize(); initStars(); } }, 180);
+  }, {passive:true});
+
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden){ if(raf){ cancelAnimationFrame(raf); raf = null; } }
+    else if(on && !raf){ raf = requestAnimationFrame(frame); }
+  });
+
+  var lastX = -999, lastY = -999;
+  document.addEventListener('pointermove', function(e){
+    if(!on) return;
+    var dx = e.clientX - lastX, dy = e.clientY - lastY;
+    if(dx*dx + dy*dy > 140){
+      for(var i = 0; i < 4; i++) spawn(e.clientX + (Math.random()-0.5)*18, e.clientY + (Math.random()-0.5)*18, false);
+      lastX = e.clientX; lastY = e.clientY;
+    }
+  }, {passive:true});
+  document.addEventListener('click', function(e){ if(on) spawn(e.clientX, e.clientY, true); });
+
+  return {
+    onTheme: function(dark){
+      if(dark){
+        start();
+        for(var i = 0; i < 70; i++) setTimeout(function(){ spawn(Math.random()*W, Math.random()*H*0.7, false); }, i*12);
+      }else{
+        stop();
+      }
+    }
+  };
+})();
+
+/* ══════════════════════════════════════════════════════════════
+   I · BOOT — remembered choice, else the visitor's system setting
+   ══════════════════════════════════════════════════════════════ */
+(function(){
+  var saved = recall(THEME_KEY);
+  var dark = saved ? saved === 'dark'
+    : (window.matchMedia ? matchMedia('(prefers-color-scheme:dark)').matches : false);
+  applyTheme(dark, {persist:false, broadcast:false, force:true});
+})();
+
+if(mqReduce.addEventListener){
+  mqReduce.addEventListener('change', function(e){
+    REDUCED = e.matches;
+    document.body.classList.toggle('lite', REDUCED || LOWEND);
+  });
+}
+})();
+</script>
+</body>
+</html>
