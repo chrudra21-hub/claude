@@ -123,7 +123,8 @@ intercept it there instead.
 
 ## What it does
 
-Live search across name, category and kit contents · category filters with counts ·
+Two cards per row on phones (one scrolling filter strip, short category pills, kit chips
+deferred to the detail view) · live search across name, category and kit contents · category filters with counts ·
 sort by name or price · a detail dialog with keyboard arrows, Escape to close and focus
 returned to the card you opened · empty state with a reset · the same light/energy theme,
 remembered and shared with the rest of the site.

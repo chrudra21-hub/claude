@@ -216,6 +216,8 @@ body.magic .card{border-color:color-mix(in oklab,var(--ac) 40%,transparent);
 .pill{position:absolute;z-index:2;top:12px;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
   padding:6px 12px;border-radius:20px;backdrop-filter:blur(6px)}
 .pill-cat{left:12px;color:#fff;background:rgba(20,12,3,.52);border:1px solid rgba(255,255,255,.34)}
+.pill-cat b{font-weight:inherit}
+.c-short{display:none}
 .pill-sale{right:12px;color:#fff;border:1px solid rgba(255,235,190,.6);
   background:linear-gradient(120deg,#C0392B,#8E2118);box-shadow:0 8px 18px -8px rgba(140,30,20,.8)}
 
@@ -252,6 +254,44 @@ body.magic .card{border-color:color-mix(in oklab,var(--ac) 40%,transparent);
 .card-open:focus-visible{outline-offset:-4px}
 .foot,.pill{position:relative;z-index:2}
 .pill{position:absolute}
+
+/* ── phones: two cards per row, with the card scaled to suit ── */
+@media(max-width:700px){
+  .grid{grid-template-columns:repeat(2,1fr);gap:12px}
+  .card{border-radius:14px}
+  .thumb{aspect-ratio:1/1}
+  .pill{top:8px;font-size:9.5px;letter-spacing:.1em;padding:4px 8px}
+  .pill-cat{left:8px;max-width:calc(100% - 74px);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .c-full{display:none}
+  .c-short{display:inline}
+  /* the kit list is what makes one card taller than its neighbour; the
+     detail view carries the full list, so the chips step aside here */
+  .kit{display:none}
+  /* one scrolling strip beats four stacked rows under a sticky toolbar */
+  .filters{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;
+    margin:0 -18px;padding:2px 18px;-webkit-overflow-scrolling:touch}
+  .filters::-webkit-scrollbar{display:none}
+  .toolbar{padding:12px 18px;gap:10px}
+  .pill-sale{right:8px}
+  .body{padding:13px 13px 0;gap:7px}
+  .card h3{font-size:15px;line-height:1.26}
+  .blurb{font-size:12.5px;line-height:1.55}
+  .kit{gap:4px}
+  .kit span{font-size:10px;padding:3px 8px}
+  /* price over a full-width button — side by side leaves no room for either */
+  .foot{flex-direction:column;align-items:stretch;gap:9px;padding:13px}
+  .price{font-size:18px}
+  .price .cur{font-size:12px}
+  .price.ask{font-size:12.5px}
+  .btn-sm{margin-left:0;width:100%;padding:11px 12px;font-size:11.5px;letter-spacing:.05em}
+}
+@media(max-width:380px){
+  .grid{gap:10px}
+  .body{padding:11px 11px 0}
+  .foot{padding:11px}
+  .card h3{font-size:14px}
+  .blurb{font-size:12px}
+}
 
 .empty{grid-column:1/-1;text-align:center;padding:64px 24px;border-radius:var(--r);border:1px dashed var(--border)}
 .empty h3{font-family:'Fraunces',serif;font-size:22px;font-weight:660;margin-bottom:8px;color:var(--ink)}
@@ -434,6 +474,9 @@ body.magic .d-cat{color:#06100F}
 var PHOTO = 'https://static.wixstatic.com/media/0e6224_0400463566ec479980c5c7f128db10cd~mv2.jpg';
 
 var CATS = ['Yantra & Frames','Crystals','Kuber Kits','Puja Essentials','Rare & Traditional'];
+/* the pill is ~90px wide on a phone, so each category also carries a short form */
+var CAT_SHORT = {'Yantra & Frames':'Yantra','Crystals':'Crystals','Kuber Kits':'Kuber Kit',
+                 'Puja Essentials':'Puja','Rare & Traditional':'Rare'};
 
 var PRODUCTS = [
   { id:'lakshmi-pyrite-yantra-frame', name:'Lakshmi Pyrite Yantra Frame', cat:'Yantra & Frames', sale:true, price:null, img:PHOTO,
@@ -600,7 +643,8 @@ function cardHTML(p){
       '<button class="card-open" type="button" data-open="'+esc(p.id)+'">View '+esc(p.name)+'</button>'+
       '<div class="thumb">'+
         '<img src="'+esc(p.img)+'" alt="'+esc(p.name)+'" loading="lazy" decoding="async" onerror="this.hidden=true">'+
-        '<span class="pill pill-cat">'+esc(p.cat)+'</span>'+
+        '<span class="pill pill-cat"><b class="c-full">'+esc(p.cat)+'</b>'+
+          '<b class="c-short">'+esc(CAT_SHORT[p.cat]||p.cat)+'</b></span>'+
         (p.sale ? '<span class="pill pill-sale">Diwali</span>' : '')+
       '</div>'+
       '<div class="body">'+
