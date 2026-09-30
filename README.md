@@ -1,7 +1,19 @@
-# Lama Fera Healing — Prasiddhe Holistic
+# Prasiddhe Holistic — Wix embeds
 
-A single-file landing page for the Lama Fera Healing service, built to be dropped into a
-Wix HTML embed. No build step, no dependencies: `index.html` is the whole thing.
+Single-file pages built to drop into Wix HTML embeds. No build step, no dependencies.
+
+| File | What it is |
+|---|---|
+| `index.html` | Lama Fera Healing service page |
+| `catalog.html` | Diwali sale product catalogue |
+
+Both share one design system, one theme contract and one nav, so they read as the same site.
+
+---
+
+# Lama Fera Healing (`index.html`)
+
+A single-file landing page for the Lama Fera Healing service.
 
 ## Using it
 
@@ -66,3 +78,52 @@ benefit card and the whole of a stat card, both centred.
 Header · hero · stat strip · benefits · session flow · who it's for + what's included ·
 voices · FAQ · booking card · disclaimer. Plus a scroll-progress bar, a back-to-top button
 and a mobile sticky booking bar that hides itself once the booking card is on screen.
+
+
+---
+
+# Diwali Sale Catalogue (`catalog.html`)
+
+A filterable product catalogue for the festival collection: ten products, each with a
+photo, a one-line summary and a detail view.
+
+## Editing the catalogue
+
+Everything you change day to day sits in the `PRODUCTS` array near the bottom of the file.
+
+```js
+{ id:'kuber-kit', name:'Kuber Kit', cat:'Kuber Kits', sale:true, price:null, img:PHOTO,
+  blurb:'A five-piece Kuber set, packed together for the festival.',
+  detail:'…the longer text shown in the detail view…',
+  kit:['Mini pyrite frame','Kuber Kunji','Kuber Kumkum','Kuber Potli','Kuber Stone'] }
+```
+
+- **`img`** — every item currently points at the same `PHOTO` constant at the top of the
+  array. Give an item its own URL to replace just that one. A dead URL falls through to
+  the card's gradient rather than showing a broken image.
+- **`price`** — a number renders as `₹1,234`; `null` renders "Price on request". Items
+  without a price sort to the end of a price sort, so a half-priced catalogue still works.
+- **`cat`** — must match one of the strings in `CATS`; the filter bar and its per-category
+  counts build themselves from that list.
+- **`kit`** — optional. The card shows the first three with a "+n more", the detail view
+  shows all of them.
+- **`sale`** — `true` puts the red Diwali flag on the card.
+
+## Where an enquiry goes
+
+```js
+var ENQUIRY = { page:'https://www.prasiddhiholistics.com/contact', whatsapp:'' };
+```
+
+Put a number with country code in `whatsapp` (e.g. `'919812345678'`) and every Enquire
+button switches to WhatsApp with the product name pre-filled. Left empty, buttons go to
+the contact page with `?product=<id>`. Either way the page also posts
+`{type:'PH_PRODUCT_ENQUIRY', id, name, url}` to the parent Wix page first, so you can
+intercept it there instead.
+
+## What it does
+
+Live search across name, category and kit contents · category filters with counts ·
+sort by name or price · a detail dialog with keyboard arrows, Escape to close and focus
+returned to the card you opened · empty state with a reset · the same light/energy theme,
+remembered and shared with the rest of the site.
