@@ -827,10 +827,10 @@ body.magic .cursor-halo{opacity:.85}
       <p class="heal-lede fade" style="--d:.17s">Experience the ancient energy of Lama Fera Healing — a channelled practice that clears heavy, stagnant energy, restores inner balance, and brings mind, body and spirit back into harmony.</p>
 
       <div class="hero-cta fade" style="--d:.21s">
-        <button class="btn btn-cast" type="button" data-book>
+        <a class="btn btn-cast" href="#" data-book>
           Book a Session
           <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        </a>
         <a class="btn btn-ghost" href="#flow">See how it works</a>
       </div>
 
@@ -972,10 +972,10 @@ body.magic .cursor-halo{opacity:.85}
       </div>
       <div class="book-footer">
         <p class="book-price"><span class="cur">&#8377;</span>6,500<small>Update with your actual pricing</small></p>
-        <button class="btn btn-cast" type="button" data-book data-service="lama_fera_healing" data-duration="healing45">
+        <a class="btn btn-cast" href="#" data-book data-service="lama_fera_healing" data-duration="healing45">
           Book This Session
           <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        </a>
       </div>
     </div>
   </section>
@@ -989,7 +989,7 @@ body.magic .cursor-halo{opacity:.85}
 
 <div class="sticky-cta" id="stickyCta">
   <span class="s-price">&#8377;6,500<small>Lama Fera Healing · 7 days</small></span>
-  <button class="btn btn-cast" type="button" data-book>Book now</button>
+  <a class="btn btn-cast" href="#" data-book>Book now</a>
 </div>
 
 <script>
@@ -1017,6 +1017,11 @@ if(LOWEND) document.body.classList.add('lite');
 
 var IS_MOBILE = window.matchMedia ? matchMedia('(max-width:700px)').matches : false;
 var HAS_HOVER = window.matchMedia ? matchMedia('(hover:hover)').matches : true;
+
+/* Where links open out of the Wix embed. '_top' replaces the whole page
+   and is what you normally want. If your Wix embed blocks top navigation,
+   change this to '_blank' and links open in a new tab instead. */
+var LINK_TARGET = '_top';
 
 function $(s,r){ return (r||document).querySelector(s); }
 function $$(s,r){ return Array.prototype.slice.call((r||document).querySelectorAll(s)); }
@@ -1065,22 +1070,29 @@ window.phSetTheme = function(dark){ applyTheme(!!dark); };
 /* ══════════════════════════════════════════════════════════════
    C · NAV — real links, parent routing when embedded
    ══════════════════════════════════════════════════════════════ */
+/* Inside a Wix embed this page runs in a sandboxed cross-origin iframe,
+   where assigning window.top.location from script is blocked. A real
+   anchor with target="_top" is allowed on a user click, so the link does
+   the navigating and we only announce it to the parent page. */
 $$('[data-nav]').forEach(function(a){
-  a.addEventListener('click', function(ev){
-    if(ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.button !== 0) return; /* let the browser do its thing */
+  a.setAttribute('target',LINK_TARGET);
+  a.addEventListener('click', function(){
     var url = a.getAttribute('href');
     if(!url) return;
-    ev.preventDefault();
-    var rel = url.replace(/^https?:\/\/[^\/]+/, '') || url;
-    post({type:'OPEN_LINK', url:rel});
-    setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 250);
+    post({type:'OPEN_LINK', url:url.replace(/^https?:\/\/[^\/]+/, '') || url});
   });
 });
+/* kept for embeds that call it directly; opens a real link so it survives
+   the iframe sandbox */
 window.phNavGo = function(url){
-  var rel = String(url).replace(/^https?:\/\/[^\/]+/, '') || url;
-  post({type:'OPEN_LINK', url:rel});
-  setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 250);
+  post({type:'OPEN_LINK', url:String(url).replace(/^https?:\/\/[^\/]+/, '') || url});
+  topLink(url);
 };
+function topLink(url){
+  var a=document.createElement('a');
+  a.href=url; a.target=LINK_TARGET; a.rel='noopener';
+  document.body.appendChild(a); a.click(); a.remove();
+}
 
 /* logo background key-out — silently skipped when the host blocks CORS */
 (function(){
@@ -1393,13 +1405,16 @@ if(HAS_HOVER && !LOWEND){
 var BOOKING_PAGE = 'https://www.prasiddhiholistics.com/service-form';
 var DEFAULTS = {service:'lama_fera_healing', duration:'healing45'};
 
-$$('[data-book]').forEach(function(btn){
-  btn.addEventListener('click', function(){
-    var service  = btn.getAttribute('data-service')  || DEFAULTS.service;
-    var duration = btn.getAttribute('data-duration') || DEFAULTS.duration;
-    var url = BOOKING_PAGE + '?service=' + encodeURIComponent(service) + '&duration=' + encodeURIComponent(duration);
+/* each booking control becomes a real link for the same sandbox reason;
+   the click handler only announces it to the parent page */
+$$('[data-book]').forEach(function(el){
+  var service  = el.getAttribute('data-service')  || DEFAULTS.service;
+  var duration = el.getAttribute('data-duration') || DEFAULTS.duration;
+  var url = BOOKING_PAGE + '?service=' + encodeURIComponent(service) + '&duration=' + encodeURIComponent(duration);
+  if(el.tagName === 'A'){ el.href = url; el.target = LINK_TARGET; el.rel = 'noopener'; }
+  el.addEventListener('click', function(){
     post({type:'SB_GO_TO_BOOKING', url:url});
-    setTimeout(function(){ try{ window.top.location.href = url; }catch(e){ location.href = url; } }, 400);
+    if(el.tagName !== 'A') topLink(url);
   });
 });
 
@@ -1557,7 +1572,23 @@ var particles = (function(){
 })();
 
 /* ══════════════════════════════════════════════════════════════
-   I · BOOT — remembered choice, else the visitor's system setting
+   I · HEIGHT — a Wix embed is a fixed-size iframe. Setting the
+   element height in the editor is enough, but broadcasting the real
+   height lets a Velo snippet size it automatically.
+   ══════════════════════════════════════════════════════════════ */
+var lastH = 0;
+function reportHeight(){
+  var h = Math.ceil(document.documentElement.scrollHeight);
+  if(Math.abs(h - lastH) < 2) return;
+  lastH = h; post({type:'PH_HEIGHT', height:h});
+}
+window.addEventListener('load', reportHeight);
+window.addEventListener('resize', reportHeight, {passive:true});
+if(window.ResizeObserver) new ResizeObserver(reportHeight).observe(document.body);
+reportHeight();
+
+/* ══════════════════════════════════════════════════════════════
+   J · BOOT — remembered choice, else the visitor's system setting
    ══════════════════════════════════════════════════════════════ */
 (function(){
   var saved = recall(THEME_KEY);

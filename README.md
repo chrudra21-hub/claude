@@ -11,6 +11,61 @@ Both share one design system, one theme contract and one nav, so they read as th
 
 ---
 
+## Putting these in Wix
+
+**1 · Use the right element.** Editor → **Add → Embed Code → Embed HTML**, then *Enter
+code* and paste the whole file. Do **not** use Settings → Custom Code: that injects into
+the site `<head>` and will not render a full HTML document.
+
+**2 · Set the element height.** A Wix embed is a fixed-size iframe. If its height is
+smaller than the page, the page scrolls inside a little box — which is what "not working"
+usually looks like. Approximate heights at the moment:
+
+| | desktop | mobile |
+|---|---|---|
+| `index.html` | ~5300px | ~9100px |
+| `catalog.html` | ~2800px | ~3100px |
+
+Set them separately for desktop and mobile in the editor.
+
+**3 · Or size it automatically (Velo).** Both pages post their real height on load and on
+every resize, so a few lines size the element for you:
+
+```js
+$w.onReady(() => {
+  $w('#html1').onMessage(event => {
+    if (event.data && event.data.type === 'PH_HEIGHT') {
+      $w('#html1').height = event.data.height;
+    }
+  });
+});
+```
+
+**4 · Links out of the embed.** Wix runs the embed in a sandboxed cross-origin iframe,
+where `window.top.location` from JavaScript is blocked — that is why buttons can look
+dead. Every outward control is therefore a real `<a target="_top">`, which browsers allow
+on a user click. If your embed blocks top navigation too, change one line near the top of
+the script:
+
+```js
+var LINK_TARGET = '_top';   // '_blank' opens links in a new tab instead
+```
+
+Also note `localStorage` throws inside that iframe. It is wrapped, so the pages work
+either way — the visitor's theme choice just isn't remembered between visits.
+
+### Messages the parent page can listen for
+
+| Message | From | Meaning |
+|---|---|---|
+| `PH_HEIGHT` | both | the page's current height in px |
+| `PH_THEME` | both ways | light/night theme; the parent wins when it sends one |
+| `OPEN_LINK` | both | a nav link was used (relative URL) |
+| `SB_GO_TO_BOOKING` | `index.html` | a Book button was used |
+| `PH_PRODUCT_ENQUIRY` | `catalog.html` | an Enquire button was used, with `id` and `name` |
+
+---
+
 # Lama Fera Healing (`index.html`)
 
 A single-file landing page for the Lama Fera Healing service.

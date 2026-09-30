@@ -444,10 +444,10 @@ body.magic .d-cat{color:#06100F}
       </div>
       <div class="d-foot">
         <span class="d-price" id="dPrice"></span>
-        <button class="btn btn-cast btn-lg" id="dEnquire" type="button">
+        <a class="btn btn-cast btn-lg" id="dEnquire" href="#" target="_top" rel="noopener">
           Enquire
           <svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
+        </a>
         <span class="d-nav">
           <button class="dnav" id="dPrev" type="button" aria-label="Previous product"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M10 3 5 8l5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
           <button class="dnav" id="dNext" type="button" aria-label="Next product"><svg viewBox="0 0 16 16" fill="none" aria-hidden="true"><path d="M6 3l5 5-5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg></button>
@@ -524,6 +524,11 @@ var PRODUCTS = [
 /* Where an enquiry goes. Set whatsapp to a number with country code
    (e.g. "919812345678") and the buttons switch to WhatsApp with the
    product name filled in; leave it empty to use the contact page. */
+/* Where links open out of the Wix embed. '_top' replaces the whole page
+   and is what you normally want. If your Wix embed blocks top navigation,
+   change this to '_blank' and links open in a new tab instead. */
+var LINK_TARGET = '_top';
+
 var ENQUIRY = { page:'https://www.prasiddhiholistics.com/contact', whatsapp:'' };
 
 /* ══════════════════════════════════════════════════════════════
@@ -565,13 +570,15 @@ window.addEventListener('message',function(e){
 });
 window.phSetTheme=function(d){ applyTheme(!!d); };
 
+/* Inside a Wix embed this page runs in a sandboxed cross-origin iframe,
+   where assigning window.top.location from script is blocked. A real
+   anchor with target="_top" is allowed on a user click, so the link does
+   the navigating and we only announce it to the parent page. */
 $$('[data-nav]').forEach(function(a){
-  a.addEventListener('click',function(ev){
-    if(ev.metaKey||ev.ctrlKey||ev.shiftKey||ev.button!==0) return;
+  a.setAttribute('target',LINK_TARGET);
+  a.addEventListener('click',function(){
     var url=a.getAttribute('href'); if(!url) return;
-    ev.preventDefault();
     post({type:'OPEN_LINK', url:url.replace(/^https?:\/\/[^\/]+/,'')||url});
-    setTimeout(function(){ try{ window.top.location.href=url; }catch(e){ location.href=url; } },250);
   });
 });
 
@@ -653,9 +660,9 @@ function cardHTML(p){
         kit+
       '</div>'+
       '<div class="foot">'+price+
-        '<button class="btn btn-cast btn-sm" type="button" data-enquire="'+esc(p.id)+'">Enquire'+
+        '<a class="btn btn-cast btn-sm" href="'+esc(enquiryURL(p))+'" target="'+LINK_TARGET+'" rel="noopener" data-enquire="'+esc(p.id)+'">Enquire'+
           '<svg viewBox="0 0 12 12" fill="none" aria-hidden="true"><path d="M2 6H10M7 3L10 6L7 9" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"/></svg>'+
-        '</button>'+
+        '</a>'+
       '</div>'+
     '</article>';
 }
@@ -718,7 +725,7 @@ $('#sortBy').addEventListener('change',function(){ state.sort=this.value; render
 grid.addEventListener('click',function(e){
   var t=e.target.closest ? e.target : null; if(!t) return;
   var enq=t.closest('[data-enquire]');
-  if(enq){ e.stopPropagation(); enquire(byId(enq.getAttribute('data-enquire'))); return; }
+  if(enq){ e.stopPropagation(); announce(byId(enq.getAttribute('data-enquire'))); return; }
   var open=t.closest('[data-open]');
   if(open) openDetail(byId(open.getAttribute('data-open')));
 });
@@ -731,17 +738,14 @@ function byId(id){
 /* ══════════════════════════════════════════════════════════════
    6 · ENQUIRY
    ══════════════════════════════════════════════════════════════ */
-function enquire(p){
-  if(!p) return;
-  var url;
-  if(ENQUIRY.whatsapp){
-    url='https://wa.me/'+ENQUIRY.whatsapp+'?text='+encodeURIComponent('Hello! I would like to know the price and availability of: '+p.name);
-  }else{
-    url=ENQUIRY.page+'?product='+encodeURIComponent(p.id);
-  }
-  post({type:'PH_PRODUCT_ENQUIRY', id:p.id, name:p.name, url:url});
-  setTimeout(function(){ try{ window.top.location.href=url; }catch(e){ location.href=url; } },350);
+function enquiryURL(p){
+  return ENQUIRY.whatsapp
+    ? 'https://wa.me/'+ENQUIRY.whatsapp+'?text='+encodeURIComponent('Hello! I would like to know the price and availability of: '+p.name)
+    : ENQUIRY.page+'?product='+encodeURIComponent(p.id);
 }
+/* the control is an <a target="_top">, so the browser navigates; this only
+   tells the parent page an enquiry started */
+function announce(p){ post({type:'PH_PRODUCT_ENQUIRY', id:p.id, name:p.name, url:enquiryURL(p)}); }
 
 /* ══════════════════════════════════════════════════════════════
    7 · DETAIL DIALOG
@@ -765,6 +769,8 @@ function openDetail(p){
     }).join('');
     incl.hidden=false;
   } else incl.hidden=true;
+  $('#dEnquire').href=enquiryURL(p);
+  $('#dEnquire').target=LINK_TARGET;
   var pr=$('#dPrice');
   if(typeof p.price==='number'){ pr.className='d-price'; pr.innerHTML=money(p.price); }
   else { pr.className='d-price ask'; pr.textContent='Price on request'; }
@@ -787,7 +793,7 @@ function step(dir){
 dPrev.addEventListener('click',function(){ step(-1); });
 dNext.addEventListener('click',function(){ step(1); });
 $('#dClose').addEventListener('click',function(){ closeDetail(); });
-$('#dEnquire').addEventListener('click',function(){ enquire(current); });
+$('#dEnquire').addEventListener('click',function(){ if(current) announce(current); });
 function closeDetail(){
   if(supportsModal && dlg.open) dlg.close(); else dlg.removeAttribute('open');
 }
@@ -831,16 +837,34 @@ window.addEventListener('scroll',onScroll,{passive:true});
 toTop.addEventListener('click',function(){ window.scrollTo({top:0,behavior:REDUCED?'auto':'smooth'}); });
 
 /* ══════════════════════════════════════════════════════════════
-   9 · BOOT
+   9 · HEIGHT — a Wix embed is a fixed-size iframe. Setting the
+   element height in the editor is enough, but broadcasting the real
+   height lets a Velo snippet size it automatically.
+   ══════════════════════════════════════════════════════════════ */
+var lastH=0;
+function reportHeight(){
+  var h=Math.ceil(document.documentElement.scrollHeight);
+  if(Math.abs(h-lastH)<2) return;
+  lastH=h; post({type:'PH_HEIGHT', height:h});
+}
+window.addEventListener('load',reportHeight);
+window.addEventListener('resize',reportHeight,{passive:true});
+if(window.ResizeObserver) new ResizeObserver(reportHeight).observe(document.body);
+
+/* ══════════════════════════════════════════════════════════════
+   10 · BOOT
    ══════════════════════════════════════════════════════════════ */
 (function(){
   var saved=recall(THEME_KEY);
   var dark = saved ? saved==='dark' : (window.matchMedia ? matchMedia('(prefers-color-scheme:dark)').matches : false);
   applyTheme(dark,{persist:false,broadcast:false,force:true});
 })();
+$('#dEnquire').target=LINK_TARGET;
+$('#dEnquire').href=ENQUIRY.whatsapp ? 'https://wa.me/'+ENQUIRY.whatsapp : ENQUIRY.page;
 buildFilters();
 render();
 onScroll();
+reportHeight();
 })();
 </script>
 </body>
